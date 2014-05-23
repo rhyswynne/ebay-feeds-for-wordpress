@@ -3,14 +3,14 @@ Plugin Name:  eBay Feeds For Wordpress
 Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/
 Donate link:  http://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      1.1
+Version:      1.3
 Author:       Rhys Wynne
 Author URI:   http://www.winwar.co.uk/
 
 Contributors: rhyswynne
 Stable tag: trunk
 Requires at least: 3.0 
-Tested Up to: 3.7
+Tested Up to: 3.9
 Tags: ebay, ebay partner feeds, ebay partner network, rss feeds, affiliate marketing
 
 Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
@@ -21,13 +21,35 @@ eBay Feeds For WordPress allows you to quickly and easily place feeds from the e
 
 *Having Problems?* Please use the support forums and I'll attempt to get back to you quickly. In a rush? Use our [Plugin Installation & Customisation Service](winwar.co.uk/plugins/ebay-feeds-wordpress/#css)
 
-**More Sites**
+= About Winwar Media =
+This plugin is made by [**Winwar Media**](http://winwar.co.uk/), a WordPress Development and Training Agency in Manchester, UK.
+
+Why don't you?
 
 * [eBay Feeds For Wordpress](http://winwar.co.uk/plugins/ebay-feeds-wordpress/) WordPress Plugin homepage with further instructions.
 * Check out more of our [WordPress Plugins](http://winwar.co.uk/plugins/)
-* Blogging Tutorials and Wordpress Plugins at [The Blogging Dojo](http://bloggingdojo.com/)
+* Follow us on Social Media, such as [Facebook](https://www.facebook.com/winwaruk), [Twitter](https://twitter.com/winwaruk) or [Google+](https://plus.google.com/+WinwarCoUk)
+* [Send us an email](http://winwar.co.uk/contact-us/)! We like hearing from plugin users.
+* Check out our book, [bbPress Complete](http://winwar.co.uk/books/bbpress-complete/)
+
+= For Support =
+We offer support in two places:-
+
+* Support on the [WordPress.org Support Board](http://wordpress.org/support/plugin/inline-tweet-sharer)
+* A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
 
 == Changelog ==
+= 1.3 =
+* Added a "fallback" option that displays text when feeds aren't present.
+
+= 1.2 =
+* Changed to the new eBay logo.
+* Fixed link in plugin display footer.
+* Displays error should URL be invalid.
+
+= 1.1 =
+* Removed a few redundant files that included a security exploit. I recommend a full upgrade.
+
 = 1.0 =
 * Fixed a few small compatability issues.
 * Added the ability to "Nofollow" links.
