@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.3
+Version:      1.4
 Author:       Winwar Media
 Author URI:   http://winwar.co.uk/
 
@@ -36,16 +36,15 @@ $num = get_option('ebay-feeds-for-wordpress-default-number');
 include_once(ABSPATH . WPINC . '/rss.php');
 
 $rss = fetch_feed($url);
-$rss->enable_order_by_date(false);
 
 if (!is_wp_error($rss))
 {
-    
-    $rss_items = $rss->get_items(0, $num);
+  $rss->enable_order_by_date(false);    
+  $rss_items = $rss->get_items(0, $num);
 }
 echo "<div class='ebayfeed'>";
 
-if ($rss_items)
+if (!is_wp_error($rss) && $rss_items)
 {
 foreach ($rss_items as $item ) {
     
@@ -395,7 +394,7 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 
 }
 
-add_action('widgets_init', ebay_feeds_for_wordpress_Widget);
+add_action('widgets_init', 'ebay_feeds_for_wordpress_Widget');
 
 function ebay_feeds_for_wordpress_Widget(){
 	// curl need to be installed
