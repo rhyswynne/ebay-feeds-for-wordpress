@@ -3,7 +3,7 @@ Plugin Name:  eBay Feeds For Wordpress
 Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/
 Donate link:  http://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      1.4
+Version:      1.5
 Author:       Rhys Wynne
 Author URI:   http://www.winwar.co.uk/
 
@@ -19,7 +19,7 @@ Output RSS to HTML with this simple plugin. Easy to install, set up and customis
 
 eBay Feeds For WordPress allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
 
-*Having Problems?* Please use the support forums and I'll attempt to get back to you quickly. In a rush? Use our [Plugin Installation & Customisation Service](winwar.co.uk/plugins/ebay-feeds-wordpress/#css)
+*Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/) to get an answer within 1 business day.
 
 = About Winwar Media =
 This plugin is made by [**Winwar Media**](http://winwar.co.uk/), a WordPress Development and Training Agency in Manchester, UK.
@@ -35,10 +35,16 @@ Why don't you?
 = For Support =
 We offer support in two places:-
 
-* Support on the [WordPress.org Support Board](http://wordpress.org/support/plugin/inline-tweet-sharer)
+* Support on the [WordPress.org Support Board](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress)
 * A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
 
 == Changelog ==
+= 1.5 =
+* Added a "Debug Mode", so errors aren't hidden if they exist.
+* Fixed a few notices that appeared with WP_DEBUG was set to true.
+* Cleaned up a lot of the internal code, with proper line spacing!
+* Switched fully from Blogging Dojo to Winwar Media.
+
 = 1.4 = 
 * Stops a fatal error appearing when the feed doesn't return in the widget.
 * Fixed a PHP warning on activation when registering the widget in Debug Mode.
@@ -67,7 +73,8 @@ We offer support in two places:-
 = 0.9.1 =
 * Improved the backend of the plugin.
 
-= 0.9 =* Improved "links in new window" opening feature
+= 0.9 =
+* Improved "links in new window" opening feature
 
 = 0.8 =
 Added a feature where you can open links in a new window.
