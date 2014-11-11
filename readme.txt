@@ -3,7 +3,7 @@ Plugin Name:  eBay Feeds For Wordpress
 Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/
 Donate link:  http://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      1.5
+Version:      1.5.1
 Author:       Rhys Wynne
 Author URI:   http://www.winwar.co.uk/
 
@@ -39,6 +39,9 @@ We offer support in two places:-
 * A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
 
 == Changelog ==
+= 1.5.1 =
+* Removed a default link which was daft and no idea why it was there.
+
 = 1.5 =
 * Added a "Debug Mode", so errors aren't hidden if they exist.
 * Fixed a few notices that appeared with WP_DEBUG was set to true.
