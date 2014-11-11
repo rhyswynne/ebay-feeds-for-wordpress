@@ -39,8 +39,8 @@ We offer support in two places:-
 * A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
 
 == Changelog ==
-= 1.5.1 =
-* Removed a default link which was daft and no idea why it was there.
+= 1.5.1 (Time Taken - 15m) =
+* Removed a default link which was daft and no idea why it was there. (Props @[johnwilsonuk](https://twitter.com/johnwilsonuk))
 
 = 1.5 =
 * Added a "Debug Mode", so errors aren't hidden if they exist.
