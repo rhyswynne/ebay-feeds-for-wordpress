@@ -39,12 +39,12 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
     $rss->enable_order_by_date( false );
     $rss_items = $rss->get_items( 0, $num );
   } else {
-    if ( current_user_can('manage_options') && 1 == $debug ) {
+    if ( current_user_can( 'manage_options' ) && 1 == $debug ) {
 
-        $error_string = $rss->get_error_message();
-        echo '<div id="message" class="error"><p>' . $error_string . '</p></div>';
+      $error_string = $rss->get_error_message();
+      echo '<div id="message" class="error"><p>' . $error_string . '</p></div>';
 
-      }
+    }
   }
 
   echo "<div class='ebayfeed'>";
@@ -112,7 +112,7 @@ function ebay_feeds_for_wordpress_menus() {
 }
 
 function ebay_feeds_for_wordpress_options() {
-  ?>
+?>
   <div class="pea_admin_wrap">
     <div class="pea_admin_top">
       <h1><?php echo EBFW_PLUGIN_NAME; ?> <small> - <?php echo EBFW_PLUGIN_TAGLINE; ?></small></h1>
@@ -175,7 +175,7 @@ function ebay_feeds_for_wordpress_options() {
 
                   <?php
 
-                  if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) { echo "checked"; } ?>
+  if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) { echo "checked"; } ?>
 
                   ></td>
 
@@ -188,7 +188,7 @@ function ebay_feeds_for_wordpress_options() {
 
                     <?php
 
-                    if ( get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) == 1 ) { echo "checked"; } ?>
+  if ( get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) == 1 ) { echo "checked"; } ?>
 
                     ></td>
 
@@ -203,7 +203,7 @@ function ebay_feeds_for_wordpress_options() {
 
                       <?php
 
-                      if ( get_option( 'ebay-feeds-for-wordpress-link' ) == 1 ) { echo "checked"; } ?>
+  if ( get_option( 'ebay-feeds-for-wordpress-link' ) == 1 ) { echo "checked"; } ?>
 
                       ></td>
 
@@ -217,7 +217,7 @@ function ebay_feeds_for_wordpress_options() {
 
                         <?php
 
-                        if ( get_option( 'ebay-feeds-for-wordpress-debug' ) == 1 ) { echo "checked"; } ?>
+  if ( get_option( 'ebay-feeds-for-wordpress-debug' ) == 1 ) { echo "checked"; } ?>
 
                         >
 
@@ -232,11 +232,11 @@ function ebay_feeds_for_wordpress_options() {
                         <td>
                           <?php
 
-                          $fallback = get_option( 'ebay_feeds_for_wordpress_fallback' );
+  $fallback = get_option( 'ebay_feeds_for_wordpress_fallback' );
 
-                          wp_editor( $fallback, 'ebay_feeds_for_wordpress_fallback' );
+  wp_editor( $fallback, 'ebay_feeds_for_wordpress_fallback' );
 
-                          ?>
+?>
                           <em>If for any reason, the feed doesn't work, this will be displayed instead. Use this to link to your eBay shop.</em>
                         </td>
 
@@ -308,11 +308,11 @@ function ebay_feeds_for_wordpress_options() {
               <h2>About the Author</h2>
 
               <?php
-              
-              $size = 70;
-              $rhys_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( "rhys@rhyswynne.co.uk" ) ) ) . "?s=" . $size;
-              
-              ?>
+
+  $size = 70;
+  $rhys_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( "rhys@rhyswynne.co.uk" ) ) ) . "?s=" . $size;
+
+?>
 
               <p class="pea_admin_clear"><img class="pea_admin_fl" src="<?php echo $rhys_url; ?>" alt="Rhys Wynne" /> <h3>Rhys Wynne</h3><br><a href="https://twitter.com/rhyswynne" class="twitter-follow-button" data-show-count="false">Follow @rhyswynne</a>
                 <div class="fb-subscribe" data-href="https://www.facebook.com/rhysywynne" data-layout="button_count" data-show-faces="false" data-width="220"></div>
@@ -327,7 +327,7 @@ function ebay_feeds_for_wordpress_options() {
 
         <?php
 
-      }
+}
 
 
 function ebay_feeds_for_wordpress_options_process() { // whitelist options
@@ -372,7 +372,7 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 
     $title = empty( $instance['widget_title'] ) ? 'eBay Items' : apply_filters( 'widget_title', $instance['widget_title'] );
     $text = empty( $instance['widget_text'] ) ? 'Here are our eBay auctions' : $instance['widget_text'];
-    
+
     if ( empty( $instance['widget_num'] ) && !is_numeric( $instance['widget_num'] ) ) {
 
       $num = 3;
@@ -382,7 +382,7 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
       $num = $instance['widget_num'];
 
     }
-    
+
     $feed = empty( $instance['widget_feed'] ) ? get_option( 'ebay-feeds-for-wordpress-default' ) : $instance['widget_feed'];
 
     echo $before_widget;
@@ -486,8 +486,8 @@ function ebayfeedsforwordpress_shortcode( $atts ) {
   $url = get_option( 'ebay-feeds-for-wordpress-default' );
   $num = get_option( 'ebay-feeds-for-wordpress-default-number' );
   extract( shortcode_atts( array(
-    'feed' => $url, 'items' => $num
-    ), $atts ) );
+        'feed' => $url, 'items' => $num
+      ), $atts ) );
 
   $feeddisplay = ebay_feeds_for_wordpress_notecho( esc_attr( $feed ), esc_attr( $items ) );
 
@@ -499,7 +499,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
   $link = get_option( "ebay-feeds-for-wordpress-link" );
   $blank = get_option( "ebay-feeds-for-wordpress-link-open-blank" );
   $nofollow = get_option( "ebay-feeds-for-wordpress-nofollow-links" );
-  $debug = get_option("ebay-feeds-for-wordpress-debug");
+  $debug = get_option( "ebay-feeds-for-wordpress-debug" );
   $disprss_items = "";
   $display = "";
 
@@ -537,7 +537,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
 
     } else {
 
-      if ( current_user_can('manage_options') && 1 == $debug ) {
+      if ( current_user_can( 'manage_options' ) && 1 == $debug ) {
 
         $error_string = $disprss->get_error_message();
         $display .= '<div id="message" class="error"><p>' . $error_string . '</p></div>';
@@ -581,7 +581,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
   }
 
   $display .= "</div>";
-  
+
   if ( $link == 1 ) {
     $display .= "<a href='http://winwar.co.uk/plugins/ebay-feeds-wordpress/'>eBay Feeds for WordPress</a> by <a href='http://winwar.co.uk/'>Winwar Media</a><br/><br/>";
   }
