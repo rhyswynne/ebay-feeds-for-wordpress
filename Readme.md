@@ -53,6 +53,10 @@ We offer support in two places:-
 
 Changelog
 =========
+1.5.2 (Time Taken - <1m)
+------------------------
+* Fix a spelling mistake in the readme.
+
 1.5.1 (Time Taken - 15m)
 ------------------------
 * Removed a default link which was daft and no idea why it was there. (Props @[johnwilsonuk](https://twitter.com/johnwilsonuk))

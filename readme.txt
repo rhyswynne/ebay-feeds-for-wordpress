@@ -39,7 +39,7 @@ We offer support in two places:-
 * A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
 
 == Changelog ==
-= 1.5.2 =
+= 1.5.2 (Time Taken - <1m) =
 * Fix a spelling mistake in the readme.
 
 = 1.5.1 (Time Taken - 15m) =
