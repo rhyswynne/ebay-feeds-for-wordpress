@@ -38,6 +38,10 @@ We offer support in two places:-
 * Support on the [WordPress.org Support Board](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress)
 * A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
 
+= Want to help development? =
+* Fix (or submit) an issue on Github.
+* 
+
 == Changelog ==
 = 1.6 () =
 * Plugin now translateable

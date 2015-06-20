@@ -11,12 +11,12 @@ Author URI:   http://winwar.co.uk/
 
 function ebay_feeds_for_wordpress_textdomain() {
     $plugin_dir = basename( dirname( __FILE__ ) );
-    load_plugin_textdomain( 'ebfww', false, $plugin_dir .'/languages' );
+    load_plugin_textdomain( 'ebay-feeds-for-wordpress', false, $plugin_dir .'/languages' );
 }
 add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_textdomain' );
 
 define( "EBFW_PLUGIN_NAME", "eBay Feeds For WordPress" );
-define( "EBFW_PLUGIN_TAGLINE", __( "Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.", "ebfww" ) );
+define( "EBFW_PLUGIN_TAGLINE", __( "Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.", "ebay-feeds-for-wordpress" ) );
 define( "EBFW_PLUGIN_URL", "http://winwar.co.uk/plugins/ebay-feeds-wordpress/" );
 define( "EBFW_EXTEND_URL", "http://wordpress.org/extend/plugins/ebay-feeds-for-wordpress/" );
 define( "EBFW_AUTHOR_TWITTER", "rhyswynne" );
@@ -93,7 +93,7 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
 
   if ( $link == 1 ) {
 
-    printf( __( '<a href="%s">eBay Feeds for WordPress</a> by <a href="%s">Winwar Media</a><br/><br/>', 'ebfww' ), 'http://winwar.co.uk/plugins/ebay-feeds-wordpress/', 'http://winwar.co.uk' );
+    printf( __( '<a href="%s">eBay Feeds for WordPress</a> by <a href="%s">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' ), 'http://winwar.co.uk/plugins/ebay-feeds-wordpress/', 'http://winwar.co.uk' );
 
   }
 }
@@ -133,9 +133,9 @@ function ebay_feeds_for_wordpress_options() {
           <div id="mc_embed_signup">
             <form action="http://peadig.us5.list-manage2.com/subscribe/post?u=e16b7a214b2d8a69e134e5b70&amp;id=eb50326bdf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
               <div class="mc-field-group">
-                <label for="mce-EMAIL"><?php _e( 'Email Address', 'ebfww' ); ?>
+                <label for="mce-EMAIL"><?php _e( 'Email Address', 'ebay-feeds-for-wordpress' ); ?>
                 </label>
-                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><button type="submit" name="subscribe" id="mc-embedded-subscribe" class="pea_admin_green"><?php _e( 'Sign Up!', 'ebfww' ); ?></button>
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"><button type="submit" name="subscribe" id="mc-embedded-subscribe" class="pea_admin_green"><?php _e( 'Sign Up!', 'ebay-feeds-for-wordpress' ); ?></button>
               </div>
               <div id="mce-responses" class="clear">
                 <div class="response" id="mce-error-response" style="display:none"></div>
@@ -159,7 +159,7 @@ function ebay_feeds_for_wordpress_options() {
 
               <tr valign="top">
 
-                <th scope="row" style="width:400px"><?php _e( 'Default eBay Feed: ', 'ebfww' ); ?></th>
+                <th scope="row" style="width:400px"><?php _e( 'Default eBay Feed: ', 'ebay-feeds-for-wordpress' ); ?></th>
 
                 <td><input type="text" name="ebay-feeds-for-wordpress-default" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-default' ); ?>" /></td>
 
@@ -167,7 +167,7 @@ function ebay_feeds_for_wordpress_options() {
 
               <tr valign="top">
 
-                <th scope="row" style="width:400px"><?php _e( 'Default Number of Items To Show:', 'ebfww' ); ?></th>
+                <th scope="row" style="width:400px"><?php _e( 'Default Number of Items To Show:', 'ebay-feeds-for-wordpress' ); ?></th>
 
                 <td><input type="text" name="ebay-feeds-for-wordpress-default-number" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-default-number' ); ?>" /></td>
 
@@ -175,7 +175,7 @@ function ebay_feeds_for_wordpress_options() {
 
               <tr valign="top">
 
-                <th scope="row" style="width:400px"><label><?php _e( 'Open Links In New Window?', 'ebfww' ); ?></label></th>
+                <th scope="row" style="width:400px"><label><?php _e( 'Open Links In New Window?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
                 <td><input type="checkbox" name="ebay-feeds-for-wordpress-link-open-blank" value="1"
 
@@ -188,7 +188,7 @@ function ebay_feeds_for_wordpress_options() {
                 </tr>
                 <tr valign="top">
 
-                  <th scope="row" style="width:400px"><label><?php _e( 'Nofollow Links?', 'ebfww' ); ?></label></th>
+                  <th scope="row" style="width:400px"><label><?php _e( 'Nofollow Links?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
                   <td><input type="checkbox" name="ebay-feeds-for-wordpress-nofollow-links" value="1"
 
@@ -203,7 +203,7 @@ function ebay_feeds_for_wordpress_options() {
 
                   <tr valign="top">
 
-                    <th scope="row" style="width:400px"><label><?php _e( 'Link to us (optional, but appreciated)', 'ebfww' ); ?></label></th>
+                    <th scope="row" style="width:400px"><label><?php _e( 'Link to us (optional, but appreciated)', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
                     <td><input type="checkbox" name="ebay-feeds-for-wordpress-link" value="1"
 
@@ -217,7 +217,7 @@ function ebay_feeds_for_wordpress_options() {
 
                     <tr valign="top">
 
-                      <th scope="row" style="width:400px"><label><?php _e( 'Switch Debug Mode On?', 'ebfww' ); ?></label></th>
+                      <th scope="row" style="width:400px"><label><?php _e( 'Switch Debug Mode On?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
                       <td><input type="checkbox" name="ebay-feeds-for-wordpress-debug" value="1"
 
@@ -227,13 +227,13 @@ function ebay_feeds_for_wordpress_options() {
 
                         >
 
-                        <p><em><?php printf( __('Use this to identify problems with the feed or plugin. If switched on, logged in users will be able to see errors of the feed. If you <a href="%s">ask for support</a>, this will be the first thing we ask you to do!</em>', 'ebfww' ), 'http://winwar.co.uk/priority-support/' ); ?></p></td>
+                        <p><em><?php printf( __('Use this to identify problems with the feed or plugin. If switched on, logged in users will be able to see errors of the feed. If you <a href="%s">ask for support</a>, this will be the first thing we ask you to do!</em>', 'ebay-feeds-for-wordpress' ), 'http://winwar.co.uk/priority-support/' ); ?></p></td>
 
                       </tr>
 
                       <tr valign="top">
 
-                        <th scope="row" style="width:400px"><label><?php _e( 'Fallback Text', 'ebfww' ); ?></label></th>
+                        <th scope="row" style="width:400px"><label><?php _e( 'Fallback Text', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
                         <td>
                           <?php
@@ -243,7 +243,7 @@ function ebay_feeds_for_wordpress_options() {
   wp_editor( $fallback, 'ebay_feeds_for_wordpress_fallback' );
 
 ?>
-                          <em><?php _e( 'If for any reason, the feed doesn\'t work, this will be displayed instead. Use this to link to your eBay shop.', 'ebfww' ); ?></em>
+                          <em><?php _e( 'If for any reason, the feed doesn\'t work, this will be displayed instead. Use this to link to your eBay shop.', 'ebay-feeds-for-wordpress' ); ?></em>
                         </td>
 
                       </tr>
@@ -270,8 +270,8 @@ function ebay_feeds_for_wordpress_options() {
             </div>
             <div class="pea_admin_main_right">
              <div class="pea_admin_box">
-              <h2><?php _e( 'Like this Plugin?', 'ebfww' ); ?></h2>
-              <a href="<?php echo EBFW_EXTEND_URL; ?>" target="_blank"><button type="submit" class="pea_admin_green"><?php _e( 'Rate this plugin &#9733; &#9733; &#9733; &#9733; &#9733;', 'ebfww' ); ?></button></a><br><br>
+              <h2><?php _e( 'Like this Plugin?', 'ebay-feeds-for-wordpress' ); ?></h2>
+              <a href="<?php echo EBFW_EXTEND_URL; ?>" target="_blank"><button type="submit" class="pea_admin_green"><?php _e( 'Rate this plugin &#9733; &#9733; &#9733; &#9733; &#9733;', 'ebay-feeds-for-wordpress' ); ?></button></a><br><br>
               <div id="fb-root"></div>
               <script>(function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
@@ -311,7 +311,7 @@ function ebay_feeds_for_wordpress_options() {
             <center><a href="<?php echo EBFW_DONATE_LINK; ?>" target="_blank"><img class="paypal" src="<?php echo plugins_url( 'paypal.gif' , __FILE__ ); ?>" width="147" height="47" title="Please Donate - it helps support this plugin!"></a></center>
 
             <div class="pea_admin_box">
-              <h2><?php _e( 'About the Author', 'ebfww' ); ?></h2>
+              <h2><?php _e( 'About the Author', 'ebay-feeds-for-wordpress' ); ?></h2>
 
               <?php
 
@@ -323,7 +323,7 @@ function ebay_feeds_for_wordpress_options() {
               <p class="pea_admin_clear"><img class="pea_admin_fl" src="<?php echo $rhys_url; ?>" alt="Rhys Wynne" /> <h3>Rhys Wynne</h3><br><a href="https://twitter.com/rhyswynne" class="twitter-follow-button" data-show-count="false">Follow @rhyswynne</a>
                 <div class="fb-subscribe" data-href="https://www.facebook.com/rhysywynne" data-layout="button_count" data-show-faces="false" data-width="220"></div>
               </p>
-              <p class="pea_admin_clear"><?php _e( 'Rhys Wynne is the Lead Developer at FireCask and a freelance WordPress developer and blogger. His plugins have had a total of 100,000 downloads, and his premium plugins have generated four figure sums in terms of sales. Rhys likes rubbish football (supporting Colwyn Bay FC) and Professional Wrestling.', 'ebfww' ); ?></p>
+              <p class="pea_admin_clear"><?php _e( 'Rhys Wynne is the Lead Developer at FireCask and a freelance WordPress developer and blogger. His plugins have had a total of 100,000 downloads, and his premium plugins have generated four figure sums in terms of sales. Rhys likes rubbish football (supporting Colwyn Bay FC) and Professional Wrestling.', 'ebay-feeds-for-wordpress' ); ?></p>
             </div>
 
 
@@ -439,10 +439,10 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
     if ( isset( $instance['widget_num'] ) ) { $num = $instance['widget_num']; }
     if ( isset( $instance['widget_feed'] ) ) { $feed = $instance['widget_feed']; }
 
-    echo "\r\n".'<p><label for="'.$title_id.'">'.__( 'Title','ebfww'  ).': <input type="text" class="widefat" id="'.$title_id.'" name="'.$title_name.'" value="'.esc_attr( $title ).'" /><label></p>';
-    echo "\r\n".'<p><label for="'.$text_id.'">'.__( 'Text','ebfww' ).': <input type="text" class="widefat" id="'.$text_id.'" name="'.$text_name .'" value="'.esc_attr( $text ).'" /><label></p>';
-    echo "\r\n".'<p><label for="'.$num_id.'">'.__( 'Number of Items','ebfww'  ).': <input type="text" class="widefat" id="'.$num_id.'" name="'.$num_name .'" value="'.esc_attr( $num ).'" /><label></p>';
-    echo "\r\n".'<p><label for="'.$feed_id.'">'.__( 'eBay Feed','ebfww'  ).': <input type="text" class="widefat" id="'.$feed_id.'" name="'.$feed_name .'" value="'.esc_attr( $feed ).'" /><label></p>';
+    echo "\r\n".'<p><label for="'.$title_id.'">'.__( 'Title','ebay-feeds-for-wordpress'  ).': <input type="text" class="widefat" id="'.$title_id.'" name="'.$title_name.'" value="'.esc_attr( $title ).'" /><label></p>';
+    echo "\r\n".'<p><label for="'.$text_id.'">'.__( 'Text','ebay-feeds-for-wordpress' ).': <input type="text" class="widefat" id="'.$text_id.'" name="'.$text_name .'" value="'.esc_attr( $text ).'" /><label></p>';
+    echo "\r\n".'<p><label for="'.$num_id.'">'.__( 'Number of Items','ebay-feeds-for-wordpress'  ).': <input type="text" class="widefat" id="'.$num_id.'" name="'.$num_name .'" value="'.esc_attr( $num ).'" /><label></p>';
+    echo "\r\n".'<p><label for="'.$feed_id.'">'.__( 'eBay Feed','ebay-feeds-for-wordpress'  ).': <input type="text" class="widefat" id="'.$feed_id.'" name="'.$feed_name .'" value="'.esc_attr( $feed ).'" /><label></p>';
   }
 
 }
@@ -589,7 +589,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
   $display .= "</div>";
 
   if ( $link == 1 ) {
-    $display .= __( '<a href="http://winwar.co.uk/plugins/ebay-feeds-wordpress/">eBay Feeds for WordPress</a> by <a href="http://winwar.co.uk/">Winwar Media</a><br/><br/>', 'ebfww' );
+    $display .= __( '<a href="http://winwar.co.uk/plugins/ebay-feeds-wordpress/">eBay Feeds for WordPress</a> by <a href="http://winwar.co.uk/">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' );
   }
 
 
