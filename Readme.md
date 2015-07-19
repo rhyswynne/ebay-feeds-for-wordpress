@@ -8,7 +8,7 @@ Donate link:  http://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
 
-Version:      1.5.2
+Version:      1.6.2
 
 Author:       Rhys Wynne
 
@@ -53,6 +53,14 @@ We offer support in two places:-
 
 Changelog
 =========
+1.6.2
+-----
+* French Translation Done
+
+1.6
+---
+* Plugin now translateable
+
 1.5.2 (Time Taken - <1m)
 ------------------------
 * Fix a spelling mistake in the readme.
