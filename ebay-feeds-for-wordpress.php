@@ -42,51 +42,51 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
   $rss = fetch_feed( $url );
 
   if ( !is_wp_error( $rss ) ) {
-    $rss->enable_order_by_date( false );
-    $rss_items = $rss->get_items( 0, $num );
+  	$rss->enable_order_by_date( false );
+  	$rss_items = $rss->get_items( 0, $num );
   } else {
-    if ( current_user_can( 'manage_options' ) && 1 == $debug ) {
+  	if ( current_user_can( 'manage_options' ) && 1 == $debug ) {
 
-      $error_string = $rss->get_error_message();
-      echo '<div id="message" class="error"><p>' . $error_string . '</p></div>';
+  		$error_string = $rss->get_error_message();
+  		echo '<div id="message" class="error"><p>' . $error_string . '</p></div>';
 
-    }
+  	}
   }
 
   echo "<div class='ebayfeed'>";
 
   if ( !is_wp_error( $rss ) && $rss_items ) {
 
-    foreach ( $rss_items as $item ) {
+  	foreach ( $rss_items as $item ) {
 
-      echo "<h4 class='ebayfeedtitle'><a ";
+  		echo "<h4 class='ebayfeedtitle'><a ";
 
-      if ( $blank == "1" ) {
+  		if ( $blank == "1" ) {
 
-        echo "target='_blank' ";
+  			echo "target='_blank' ";
 
-      }
+  		}
 
-      if ( $nofollow == "1" ) {
+  		if ( $nofollow == "1" ) {
 
-        echo " rel='nofollow' ";
+  			echo " rel='nofollow' ";
 
-      }
+  		}
 
-      echo "href='".$item->get_permalink()."'  class='ebayfeedlink'>".$item->get_title()."</a></h4>";
+  		echo "href='".$item->get_permalink()."'  class='ebayfeedlink'>".$item->get_title()."</a></h4>";
 
-      if ( $blank == "1" ) {
+  		if ( $blank == "1" ) {
 
-        echo $item->get_description();
+  			echo $item->get_description();
 
-      } else {
+  		} else {
 
-        $newdescription = str_replace( 'target="_blank"', '', $item->get_description() );
-        echo $newdescription;
+  			$newdescription = str_replace( 'target="_blank"', '', $item->get_description() );
+  			echo $newdescription;
 
-      }
+  		}
 
-    }
+  	}
   }
 
   echo "</div>";
@@ -360,8 +360,8 @@ if ( !function_exists( 'register_sidebar_widget' ) || !function_exists( 'registe
 // This function prints the sidebar widget--the cool stuff!
 class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 
-  function ebay_feeds_for_wordpress_Widget_class() {
-    parent::WP_Widget( 'ebay_feeds_for_wordpress_widget', 'eBay Feeds For Wordpress', array( 'description' => 'Widget for an eBay Feed' ) );
+  public function __construct() {
+    parent::__construct( 'ebay_feeds_for_wordpress_widget', 'eBay Feeds For Wordpress', array( 'description' => 'Widget for an eBay Feed' ) );
   }
 
 
@@ -500,7 +500,7 @@ function ebayfeedsforwordpress_shortcode( $atts ) {
   return $feeddisplay;
 }
 
-function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
+function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "" ) {
 
   $link = get_option( "ebay-feeds-for-wordpress-link" );
   $blank = get_option( "ebay-feeds-for-wordpress-link-open-blank" );
@@ -515,10 +515,12 @@ function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
 
   }
 
-  if ( $dispurl == "" || $dispurl == "null" ) {
 
-    $dispurl = get_option( 'ebay-feeds-for-wordpress-default' );
-    $disprss = fetch_feed( $dispurl );
+
+  if ( $dispurls == "" || $dispurls == "null" ) {
+
+    $dispurldefault = get_option( 'ebay-feeds-for-wordpress-default' );
+    $disprss = fetch_feed( $dispurldefault );
 
     if ( $disprss ) {
 
@@ -534,8 +536,10 @@ function ebay_feeds_for_wordpress_notecho( $dispurl = "", $dispnum = "" ) {
     }
 
   } else {
-    $dispurl = str_replace( "&amp;", "&", $dispurl );
-    $disprss = fetch_feed( $dispurl );
+    $dispurls = str_replace( "&amp;", "&", $dispurls );
+    $disprss = fetch_feed( $dispurls );
+
+    //wp_die( print_r( $disprss ) );
 
     if ( !is_wp_error( $disprss ) ) {
 
@@ -603,5 +607,6 @@ function ebay_feeds_for_wordpress_install() {
   add_option( 'ebay-feeds-for-wordpress-link', 0 );
   add_option( 'ebay-feeds-for-wordpress-link-open-blank', 0 );
 }
+
 
 ?>
