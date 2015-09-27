@@ -10,8 +10,8 @@ Author URI:   http://winwar.co.uk/
 */
 
 function ebay_feeds_for_wordpress_textdomain() {
-    $plugin_dir = basename( dirname( __FILE__ ) );
-    load_plugin_textdomain( 'ebay-feeds-for-wordpress', false, $plugin_dir .'/languages' );
+  $plugin_dir = basename( dirname( __FILE__ ) );
+  load_plugin_textdomain( 'ebay-feeds-for-wordpress', false, $plugin_dir .'/languages' );
 }
 add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_textdomain' );
 
@@ -26,6 +26,8 @@ register_activation_hook( __FILE__, 'ebay_feeds_for_wordpress_install' );
 
 function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
 
+  $display = "";
+
   $link = get_option( "ebay-feeds-for-wordpress-link" );
   $blank = get_option( "ebay-feeds-for-wordpress-link-open-blank" );
   $nofollow = get_option( "ebay-feeds-for-wordpress-nofollow-links" );
@@ -39,63 +41,67 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
     $num = get_option( 'ebay-feeds-for-wordpress-default-number' );
   }
 
-  $rss = fetch_feed( $url );
+  $feed = fetch_feed( $url );
 
-  if ( !is_wp_error( $rss ) ) {
-  	$rss->enable_order_by_date( false );
-  	$rss_items = $rss->get_items( 0, $num );
+  if ( !is_wp_error( $feed ) ) {
+  	
+    $feed->enable_order_by_date( false );
+  	$rss_items = $feed->get_items( 0, $num );
+
   } else {
   	if ( current_user_can( 'manage_options' ) && 1 == $debug ) {
 
-  		$error_string = $rss->get_error_message();
-  		echo '<div id="message" class="error"><p>' . $error_string . '</p></div>';
+  		$error_string = $feed->get_error_message();
+  		$display .= '<div id="message" class="error"><p>' . $error_string . '</p></div>';
 
   	}
   }
 
-  echo "<div class='ebayfeed'>";
+  $display .= '<div class="ebayfeed">';
 
-  if ( !is_wp_error( $rss ) && $rss_items ) {
+  if ( !is_wp_error( $feed ) && $rss_items ) {
 
   	foreach ( $rss_items as $item ) {
 
-  		echo "<h4 class='ebayfeedtitle'><a ";
+  		$display .= '<h4 class="ebayfeedtitle"><a ';
 
   		if ( $blank == "1" ) {
 
-  			echo "target='_blank' ";
+  			$display .= 'target="_blank" ';
 
   		}
 
   		if ( $nofollow == "1" ) {
 
-  			echo " rel='nofollow' ";
+  			$display .=' rel="nofollow" ';
 
   		}
 
-  		echo "href='".$item->get_permalink()."'  class='ebayfeedlink'>".$item->get_title()."</a></h4>";
+  		$display .= 'href="'.$item->get_permalink().'"  class="ebayfeedlink">'.$item->get_title().'</a></h4>';
 
   		if ( $blank == "1" ) {
 
-  			echo $item->get_description();
+  			$display .= $item->get_description();
 
   		} else {
 
   			$newdescription = str_replace( 'target="_blank"', '', $item->get_description() );
-  			echo $newdescription;
+  			$display .= $newdescription;
 
   		}
 
   	}
   }
 
-  echo "</div>";
+  $display .= "</div>";
 
   if ( $link == 1 ) {
 
-    printf( __( '<a href="%s">eBay Feeds for WordPress</a> by <a href="%s">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' ), 'http://winwar.co.uk/plugins/ebay-feeds-wordpress/', 'http://winwar.co.uk' );
+    $display .= __( '<a href="http://winwar.co.uk/plugins/ebay-feeds-wordpress/">eBay Feeds for WordPress</a> by <a href="http://winwar.co.uk">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' );
 
   }
+
+  return $display;
 }
 
 if ( is_admin() ) { // admin actions
@@ -105,6 +111,25 @@ if ( is_admin() ) { // admin actions
   add_action( 'admin_init', 'ebay_feeds_for_wordpress_add_admin_stylesheet' );
 
 }
+
+if ( 1 == get_option( 'ebay-feed-for-wordpress-flush-cache' ) ) {
+
+  add_filter( 'wp_feed_cache_transient_lifetime' , 'ebay_feeds_for_wordpress_set_feed_cache_time', 99, 1 );
+  add_filter( 'wp_feed_cache_transient_lifetime' , 'ebay_feeds_for_wordpress_set_feed_cache_time', 100, 1 );
+}
+
+
+/**
+ * Setting a new cache time for feeds in WordPress
+ */
+function ebay_feeds_for_wordpress_set_feed_cache_time( $seconds ) {
+  return 1;
+}
+
+/* function ebay_feeds_for_wordpress_show_feed_cache_time( $seconds ) {
+  wp_die( $seconds );
+} */
+
 
 function ebay_feeds_for_wordpress_add_admin_stylesheet() {
   wp_register_style( 'ebay-feeds-for-wordpress-style', plugins_url( 'ebay-feeds-for-wordpress-admin.css', __FILE__ ) );
@@ -118,7 +143,7 @@ function ebay_feeds_for_wordpress_menus() {
 }
 
 function ebay_feeds_for_wordpress_options() {
-?>
+  ?>
   <div class="pea_admin_wrap">
     <div class="pea_admin_top">
       <h1><?php echo EBFW_PLUGIN_NAME; ?> <small> - <?php echo EBFW_PLUGIN_TAGLINE; ?></small></h1>
@@ -181,7 +206,7 @@ function ebay_feeds_for_wordpress_options() {
 
                   <?php
 
-  if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) { echo "checked"; } ?>
+                  if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) { echo "checked"; } ?>
 
                   ></td>
 
@@ -194,7 +219,7 @@ function ebay_feeds_for_wordpress_options() {
 
                     <?php
 
-  if ( get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) == 1 ) { echo "checked"; } ?>
+                    if ( get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) == 1 ) { echo "checked"; } ?>
 
                     ></td>
 
@@ -209,7 +234,7 @@ function ebay_feeds_for_wordpress_options() {
 
                       <?php
 
-  if ( get_option( 'ebay-feeds-for-wordpress-link' ) == 1 ) { echo "checked"; } ?>
+                      if ( get_option( 'ebay-feeds-for-wordpress-link' ) == 1 ) { echo "checked"; } ?>
 
                       ></td>
 
@@ -223,7 +248,7 @@ function ebay_feeds_for_wordpress_options() {
 
                         <?php
 
-  if ( get_option( 'ebay-feeds-for-wordpress-debug' ) == 1 ) { echo "checked"; } ?>
+                        if ( get_option( 'ebay-feeds-for-wordpress-debug' ) == 1 ) { echo "checked"; } ?>
 
                         >
 
@@ -238,102 +263,118 @@ function ebay_feeds_for_wordpress_options() {
                         <td>
                           <?php
 
-  $fallback = get_option( 'ebay_feeds_for_wordpress_fallback' );
+                          $fallback = get_option( 'ebay_feeds_for_wordpress_fallback' );
 
-  wp_editor( $fallback, 'ebay_feeds_for_wordpress_fallback' );
+                          wp_editor( $fallback, 'ebay_feeds_for_wordpress_fallback' );
 
-?>
+                          ?>
                           <em><?php _e( 'If for any reason, the feed doesn\'t work, this will be displayed instead. Use this to link to your eBay shop.', 'ebay-feeds-for-wordpress' ); ?></em>
                         </td>
 
                       </tr>
 
-                    </tbody>
+                      <tr valign="top">
 
-                  </table>
+                        <th scope="row" style="width:400px"><label><?php _e( 'Disable Feed Caching?', 'ebay-feeds-for-wordpress' ); ?></label></th>
+
+                        <td><input type="checkbox" name="ebay-feed-for-wordpress-flush-cache" value="1"
+
+                          <?php
+
+                          if ( get_option( 'ebay-feed-for-wordpress-flush-cache' ) == 1 ) { echo "checked"; } ?>
+
+                          >
+
+                          <p><em><?php _e( 'If enabled, this flushes the cache. Use this if you have the odd problem with the feeds displaying incorrectly', 'ebay-feeds-for-wordpress' ); ?></p></td>
+
+                        </tr>
+
+                      </tbody>
+
+                    </table>
 
 
 
-                  <input type="hidden" name="action" value="update" />
+                    <input type="hidden" name="action" value="update" />
 
-                  <input type="hidden" name="page_options" value="ebay-feeds-for-wordpress-default" />
+                    <input type="hidden" name="page_options" value="ebay-feeds-for-wordpress-default" />
 
-                  <p class="submit">
+                    <p class="submit">
 
-                    <input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
+                      <input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ) ?>" />
 
-                  </p>
+                    </p>
 
-                </form>
+                  </form>
+                </div>
+
+              </div>
+              <div class="pea_admin_main_right">
+               <div class="pea_admin_box">
+                <h2><?php _e( 'Like this Plugin?', 'ebay-feeds-for-wordpress' ); ?></h2>
+                <a href="<?php echo EBFW_EXTEND_URL; ?>" target="_blank"><button type="submit" class="pea_admin_green"><?php _e( 'Rate this plugin &#9733; &#9733; &#9733; &#9733; &#9733;', 'ebay-feeds-for-wordpress' ); ?></button></a><br><br>
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=181590835206577";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-like" data-href="<?php echo EBFW_PLUGIN_URL; ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="true"></div>
+                <br>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>" data-related="WPBrewers">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <br>
+                <a href="http://bufferapp.com/add" class="buffer-add-button" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-count="horizontal" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>">Buffer</a><script type="text/javascript" src="http://static.bufferapp.com/js/button.js"></script>
+                <br>
+                <div class="g-plusone" data-size="medium" data-href="<?php echo EBFW_PLUGIN_URL; ?>"></div>
+                <script type="text/javascript">
+                window.___gcfg = {lang: 'en-GB'};
+
+                (function() {
+                  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                  po.src = 'https://apis.google.com/js/plusone.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+                </script>
+                <br>
+                <su:badge layout="3" location="<?php echo EBFW_PLUGIN_URL?>"></su:badge>
+                <script type="text/javascript">
+                (function() {
+                  var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+                  li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+                })();
+                </script>
               </div>
 
+              <center><a href="<?php echo EBFW_DONATE_LINK; ?>" target="_blank"><img class="paypal" src="<?php echo plugins_url( 'paypal.gif' , __FILE__ ); ?>" width="147" height="47" title="Please Donate - it helps support this plugin!"></a></center>
+
+              <div class="pea_admin_box">
+                <h2><?php _e( 'About the Author', 'ebay-feeds-for-wordpress' ); ?></h2>
+
+                <?php
+
+                $size = 70;
+                $rhys_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( "rhys@rhyswynne.co.uk" ) ) ) . "?s=" . $size;
+
+                ?>
+
+                <p class="pea_admin_clear"><img class="pea_admin_fl" src="<?php echo $rhys_url; ?>" alt="Rhys Wynne" /> <h3>Rhys Wynne</h3><br><a href="https://twitter.com/rhyswynne" class="twitter-follow-button" data-show-count="false">Follow @rhyswynne</a>
+                  <div class="fb-subscribe" data-href="https://www.facebook.com/rhysywynne" data-layout="button_count" data-show-faces="false" data-width="220"></div>
+                </p>
+                <p class="pea_admin_clear"><?php _e( 'Rhys Wynne is the Lead Developer at FireCask and a freelance WordPress developer and blogger. His plugins have had a total of 100,000 downloads, and his premium plugins have generated four figure sums in terms of sales. Rhys likes rubbish football (supporting Colwyn Bay FC) and Professional Wrestling.', 'ebay-feeds-for-wordpress' ); ?></p>
+              </div>
+
+
+
             </div>
-            <div class="pea_admin_main_right">
-             <div class="pea_admin_box">
-              <h2><?php _e( 'Like this Plugin?', 'ebay-feeds-for-wordpress' ); ?></h2>
-              <a href="<?php echo EBFW_EXTEND_URL; ?>" target="_blank"><button type="submit" class="pea_admin_green"><?php _e( 'Rate this plugin &#9733; &#9733; &#9733; &#9733; &#9733;', 'ebay-feeds-for-wordpress' ); ?></button></a><br><br>
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=181590835206577";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-like" data-href="<?php echo EBFW_PLUGIN_URL; ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="true"></div>
-              <br>
-              <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>" data-related="WPBrewers">Tweet</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-              <br>
-              <a href="http://bufferapp.com/add" class="buffer-add-button" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-count="horizontal" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>">Buffer</a><script type="text/javascript" src="http://static.bufferapp.com/js/button.js"></script>
-              <br>
-              <div class="g-plusone" data-size="medium" data-href="<?php echo EBFW_PLUGIN_URL; ?>"></div>
-              <script type="text/javascript">
-              window.___gcfg = {lang: 'en-GB'};
-
-              (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-              })();
-              </script>
-              <br>
-              <su:badge layout="3" location="<?php echo EBFW_PLUGIN_URL?>"></su:badge>
-              <script type="text/javascript">
-              (function() {
-                var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
-                li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
-              })();
-              </script>
-            </div>
-
-            <center><a href="<?php echo EBFW_DONATE_LINK; ?>" target="_blank"><img class="paypal" src="<?php echo plugins_url( 'paypal.gif' , __FILE__ ); ?>" width="147" height="47" title="Please Donate - it helps support this plugin!"></a></center>
-
-            <div class="pea_admin_box">
-              <h2><?php _e( 'About the Author', 'ebay-feeds-for-wordpress' ); ?></h2>
-
-              <?php
-
-  $size = 70;
-  $rhys_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( "rhys@rhyswynne.co.uk" ) ) ) . "?s=" . $size;
-
-?>
-
-              <p class="pea_admin_clear"><img class="pea_admin_fl" src="<?php echo $rhys_url; ?>" alt="Rhys Wynne" /> <h3>Rhys Wynne</h3><br><a href="https://twitter.com/rhyswynne" class="twitter-follow-button" data-show-count="false">Follow @rhyswynne</a>
-                <div class="fb-subscribe" data-href="https://www.facebook.com/rhysywynne" data-layout="button_count" data-show-faces="false" data-width="220"></div>
-              </p>
-              <p class="pea_admin_clear"><?php _e( 'Rhys Wynne is the Lead Developer at FireCask and a freelance WordPress developer and blogger. His plugins have had a total of 100,000 downloads, and his premium plugins have generated four figure sums in terms of sales. Rhys likes rubbish football (supporting Colwyn Bay FC) and Professional Wrestling.', 'ebay-feeds-for-wordpress' ); ?></p>
-            </div>
-
-
-
           </div>
-        </div>
 
-        <?php
+          <?php
 
-}
+        }
 
 
 function ebay_feeds_for_wordpress_options_process() { // whitelist options
@@ -345,6 +386,7 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-nofollow-links' );
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay_feeds_for_wordpress_fallback' );
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-debug' );
+  register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-flush-cache' );
 
 }
 
@@ -397,7 +439,7 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 
     echo $text;
 
-    ebay_feeds_for_wordpress( $feed, $num );
+    echo ebay_feeds_for_wordpress( $feed, $num );
 
     echo $after_widget;
 
@@ -485,18 +527,18 @@ function add_ebay_feeds_for_wordpress_tinymce_plugin( $plugin_array ) {
 
 // init process for button control
 add_action( 'init', 'ebay_feeds_for_wordpress_addbuttons' );
-
 add_shortcode( 'ebayfeedsforwordpress', 'ebayfeedsforwordpress_shortcode' );
 
 function ebayfeedsforwordpress_shortcode( $atts ) {
-  $url = get_option( 'ebay-feeds-for-wordpress-default' );
-  $num = get_option( 'ebay-feeds-for-wordpress-default-number' );
+  $feed = get_option( 'ebay-feeds-for-wordpress-default' );
+  $items = get_option( 'ebay-feeds-for-wordpress-default-number' );
+
   extract( shortcode_atts( array(
-        'feed' => $url, 'items' => $num
-      ), $atts ) );
+    'feed' => $feed, 'items' => $items
+    ), $atts ) );
 
-  $feeddisplay = ebay_feeds_for_wordpress_notecho( esc_attr( $feed ), esc_attr( $items ) );
-
+  $feeddisplay = ebay_feeds_for_wordpress( esc_attr( $feed ), esc_attr( $items ) );
+  //wp_die( $feeddisplay );
   return $feeddisplay;
 }
 
@@ -606,7 +648,6 @@ function ebay_feeds_for_wordpress_install() {
   add_option( 'ebay-feeds-for-wordpress-default-number', 3 );
   add_option( 'ebay-feeds-for-wordpress-link', 0 );
   add_option( 'ebay-feeds-for-wordpress-link-open-blank', 0 );
+  add_option( 'ebay-feed-for-wordpress-flush-cache', 0 );
 }
-
-
 ?>
