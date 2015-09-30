@@ -1,11 +1,11 @@
 === eBay Feeds for WordPress ===
 Plugin Name:  eBay Feeds For Wordpress
-Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/
+Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Donate link:  http://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
 Version:      1.7
 Author:       Rhys Wynne
-Author URI:   http://www.winwar.co.uk/
+Author URI:   http://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 
 Contributors: rhyswynne
 Stable tag: trunk
@@ -19,24 +19,24 @@ Output RSS to HTML with this simple plugin. Easy to install, set up and customis
 
 eBay Feeds For WordPress allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
 
-*Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/) to get an answer within 1 business day.
+*Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress/) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/?utm_source=description&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) to get an answer within 1 business day.
 
 = About Winwar Media =
-This plugin is made by [**Winwar Media**](http://winwar.co.uk/), a WordPress Development and Training Agency in Manchester, UK.
+This plugin is made by [**Winwar Media**](http://winwar.co.uk/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress), a WordPress Development and Training Agency in Manchester, UK.
 
 Why don't you?
 
-* [eBay Feeds For Wordpress](http://winwar.co.uk/plugins/ebay-feeds-wordpress/) WordPress Plugin homepage with further instructions.
-* Check out more of our [WordPress Plugins](http://winwar.co.uk/plugins/)
+* [eBay Feeds For Wordpress](http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) WordPress Plugin homepage with further instructions.
+* Check out more of our [WordPress Plugins](http://winwar.co.uk/plugins/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress)
 * Follow us on Social Media, such as [Facebook](https://www.facebook.com/winwaruk), [Twitter](https://twitter.com/winwaruk) or [Google+](https://plus.google.com/+WinwarCoUk)
-* [Send us an email](http://winwar.co.uk/contact-us/)! We like hearing from plugin users.
-* Check out our book, [bbPress Complete](http://winwar.co.uk/books/bbpress-complete/)
+* [Send us an email](http://winwar.co.uk/contact-us/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress)! We like hearing from plugin users.
+* Check out our book, [bbPress Complete](http://winwar.co.uk/books/bbpress-complete/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress)
 
 = For Support =
 We offer support in two places:-
 
 * Support on the [WordPress.org Support Board](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress)
-* A [priority support forum](http://winwar.co.uk/priority-support/), which offers same-day responses.
+* A [priority support forum](http://winwar.co.uk/priority-support/?utm_source=about&utm_medium=support&utm_campaign=ebayfeedsforwordpress), which offers same-day responses.
 
 = Want to help development? =
 * Fix (or submit) an issue on Github.

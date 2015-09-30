@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name:  Ebay Feeds for WordPress
-Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/
+Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.6.3
+Version:      1.7
 Author:       Winwar Media
-Author URI:   http://winwar.co.uk/
+Author URI:   http://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
 */
 
@@ -17,8 +17,8 @@ add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_textdomain' );
 
 define( "EBFW_PLUGIN_NAME", "eBay Feeds For WordPress" );
 define( "EBFW_PLUGIN_TAGLINE", __( "Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.", "ebay-feeds-for-wordpress" ) );
-define( "EBFW_PLUGIN_URL", "http://winwar.co.uk/plugins/ebay-feeds-wordpress/" );
-define( "EBFW_EXTEND_URL", "http://wordpress.org/extend/plugins/ebay-feeds-for-wordpress/" );
+define( "EBFW_PLUGIN_URL", "https://winwar.co.uk/plugins/ebay-feeds-wordpress/" );
+define( "EBFW_EXTEND_URL", "https://wordpress.org/extend/plugins/ebay-feeds-for-wordpress/" );
 define( "EBFW_AUTHOR_TWITTER", "rhyswynne" );
 define( "EBFW_DONATE_LINK", "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F852ZPEANV7C6" );
 
@@ -156,7 +156,7 @@ function ebay_feeds_for_wordpress_options() {
 
           <!-- Begin MailChimp Signup Form -->
           <div id="mc_embed_signup">
-            <form action="http://peadig.us5.list-manage2.com/subscribe/post?u=e16b7a214b2d8a69e134e5b70&amp;id=eb50326bdf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <form action="https://gospelrhys.us1.list-manage.com/subscribe/post?u=c656fe50ec16f06f152034ea9&id=d9645e38c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
               <div class="mc-field-group">
                 <label for="mce-EMAIL"><?php _e( 'Email Address', 'ebay-feeds-for-wordpress' ); ?>
                 </label>
@@ -252,7 +252,7 @@ function ebay_feeds_for_wordpress_options() {
 
                         >
 
-                        <p><em><?php printf( __('Use this to identify problems with the feed or plugin. If switched on, logged in users will be able to see errors of the feed. If you <a href="%s">ask for support</a>, this will be the first thing we ask you to do!</em>', 'ebay-feeds-for-wordpress' ), 'http://winwar.co.uk/priority-support/' ); ?></p></td>
+                        <p><em><?php printf( __('Use this to identify problems with the feed or plugin. If switched on, logged in users will be able to see errors of the feed. If you <a href="%s">ask for support</a>, this will be the first thing we ask you to do!</em>', 'ebay-feeds-for-wordpress' ), 'http://winwar.co.uk/priority-support/?utm_source=settings-page&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress' ); ?></p></td>
 
                       </tr>
 
