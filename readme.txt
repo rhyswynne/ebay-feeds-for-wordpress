@@ -42,6 +42,9 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 1.7.1 =
+* Fixes the issue of feeds sometimes displaying the wrong details in shortcodes.
+
 = 1.7 = 
 * Allow the disabling of feed caching.
 
