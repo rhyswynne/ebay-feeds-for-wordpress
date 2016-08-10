@@ -1,16 +1,16 @@
 === eBay Feeds for WordPress ===
 Plugin Name:  eBay Feeds For Wordpress
-Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
-Donate link:  http://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
+Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
+Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      1.7.2
+Version:      1.7.3
 Author:       Rhys Wynne
-Author URI:   http://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
+Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 
 Contributors: rhyswynne
 Stable tag: trunk
 Requires at least: 3.0 
-Tested Up to: 4.3
+Tested Up to: 4.6
 Tags: ebay, ebay partner feeds, ebay partner network, rss feeds, affiliate marketing
 
 Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
@@ -42,6 +42,9 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 1.7.3 = 
+* Call the JavaScript better should site_url being invalid.
+
 = 1.7.2 =
 * Switch off the default text for widget title & widget text.
 

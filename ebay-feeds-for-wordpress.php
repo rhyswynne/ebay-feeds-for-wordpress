@@ -1,13 +1,16 @@
 <?php
 /*
 Plugin Name:  Ebay Feeds for WordPress
-Plugin URI:   http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
+Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.7.2
+Version:      1.7.3
 Author:       Winwar Media
-Author URI:   http://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
+Author URI:   https://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
 */
+
+define('EBAYFEEDSFORWORDPRESS_PLUGIN_PATH',dirname(__FILE__));
+define('EBAYFEEDSFORWORDPRESS_PLUGIN_URL',plugins_url('', __FILE__));
 
 function ebay_feeds_for_wordpress_textdomain() {
   $plugin_dir = basename( dirname( __FILE__ ) );
@@ -522,7 +525,7 @@ function ebay_feeds_for_wordpress_button( $buttons ) {
 
 // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
 function add_ebay_feeds_for_wordpress_tinymce_plugin( $plugin_array ) {
-  $url = trim( get_bloginfo( 'url' ), "/" )."/wp-content/plugins/ebay-feeds-for-wordpress/editor_plugin.js";
+  $url = EBAYFEEDSFORWORDPRESS_PLUGIN_URL . "/editor_plugin.js";
   $plugin_array['ebffwplugin'] = $url;
   return $plugin_array;
 }
