@@ -8,7 +8,7 @@ Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
 
-Version:      1.7.3
+Version:      1.8
 
 Author:       Rhys Wynne
 
@@ -53,6 +53,27 @@ We offer support in two places:-
 
 Changelog
 =========
+1.8
+---
+* Added the ability to wrap a class around each individual item.
+* Auto populate user email addresses to get bug fixes.
+
+1.7.3
+-----
+* Call the JavaScript better should site_url being invalid.
+
+1.7.2
+-----
+* Switch off the default text for widget title & widget text.
+
+1.7.1
+-----
+* Fixes the issue of feeds sometimes displaying the wrong details in shortcodes.
+
+1.7
+---
+* Allow the disabling of feed caching.
+
 1.6.3
 -----
 * Made WordPress 4.3 compatible. Widget now works in debug mode.
