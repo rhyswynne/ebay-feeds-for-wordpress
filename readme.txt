@@ -42,9 +42,12 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 1.9 =
+* Added the ability to force the feed
+
 = 1.8 =
 * Added the ability to wrap a class around each individual item.
-* Auto populate user email addresses to get bug fixes.
+* Auto populate the user email addresses to get bug fixes. (it is still opt in though!)
 
 = 1.7.3 = 
 * Call the JavaScript better should site_url being invalid.

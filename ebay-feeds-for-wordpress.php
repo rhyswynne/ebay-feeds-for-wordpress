@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.8
+Version:      1.9
 Author:       Winwar Media
 Author URI:   https://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
@@ -316,6 +316,22 @@ function ebay_feeds_for_wordpress_options() {
 
                           </tr>
 
+                           <tr valign="top">
+
+                          <th scope="row" style="width:400px"><label><?php _e( 'Enable Force Feed?', 'ebay-feeds-for-wordpress' ); ?></label></th>
+
+                          <td><input type="checkbox" name="ebay-feed-for-wordpress-force-feed" value="1"
+
+                            <?php
+
+                            if ( get_option( 'ebay-feed-for-wordpress-force-feed' ) == 1 ) { echo "checked"; } ?>
+
+                            >
+
+                            <p><em><?php _e( 'Check this box to force the feed', 'ebay-feeds-for-wordpress' ); ?></p></td>
+
+                          </tr>
+
                         </tbody>
 
                       </table>
@@ -415,6 +431,7 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-debug' );
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-flush-cache' );
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-item-div-wrapper' );
+  register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-force-feed' );
 
 }
 
@@ -691,4 +708,11 @@ function ebay_feeds_for_wordpress_install() {
   add_option( 'ebay-feeds-for-wordpress-link-open-blank', 0 );
   add_option( 'ebay-feed-for-wordpress-flush-cache', 0 );
 }
+
+
+function ebay_feeds_for_wordpress_force_feed($feed, $url) {
+  if ( get_option( 'ebay-feed-for-wordpress-force-feed' ) == 1 ) {
+    $feed->force_feed(true);
+  }
+} add_action('wp_feed_options', 'ebay_feeds_for_wordpress_force_feed', 10, 2); 
 ?>
