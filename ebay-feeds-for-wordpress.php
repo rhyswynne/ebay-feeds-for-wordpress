@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.9
+Version:      1.10
 Author:       Winwar Media
 Author URI:   https://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
@@ -36,6 +36,7 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
   $nofollow = get_option( "ebay-feeds-for-wordpress-nofollow-links" );
   $debug = get_option( "ebay-feeds-for-wordpress-debug" );
   $class = get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' );
+  $ssl = get_option( 'ebay-feed-for-wordpress-ssl' );
 
   if ( $class ) {
     $classstring = '<div class="' . $class . '">';
@@ -91,16 +92,24 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
 
   		if ( $blank == "1" ) {
 
-  			$display .= $item->get_description();
+  			$newdescription .= $item->get_description();
 
 
 
   		} else {
 
   			$newdescription = str_replace( 'target="_blank"', '', $item->get_description() );
-  			$display .= $newdescription;
+  			
 
   		}
+
+      if ( $ssl == "1" ) {
+
+        $newdescription = str_replace( "<img src='http://","<img src='https://", $newdescription );
+
+      }
+
+      $display .= $newdescription;
 
       if ( $class ) {
         $display .= "</div>";
@@ -178,6 +187,7 @@ function ebay_feeds_for_wordpress_options() {
               <div class="mc-field-group">
                 <label for="mce-EMAIL"><?php _e( 'Email Address', 'ebay-feeds-for-wordpress' ); ?>
                 </label>
+                <input type="hidden" value="eBay Feeds for WordPress" name="SIGNUP" class="" id="mce-SIGNUP">
                 <input type="email" value="<?php echo $current_user->user_email; ?>" name="EMAIL" class="required email" id="mce-EMAIL"><button type="submit" name="subscribe" id="mc-embedded-subscribe" class="pea_admin_green"><?php _e( 'Sign Up!', 'ebay-feeds-for-wordpress' ); ?></button>
               </div>
               <div id="mce-responses" class="clear">
@@ -332,6 +342,22 @@ function ebay_feeds_for_wordpress_options() {
 
                           </tr>
 
+                          <tr valign="top">
+
+                          <th scope="row" style="width:400px"><label><?php _e( 'Load Images over SSL', 'ebay-feeds-for-wordpress' ); ?></label></th>
+
+                          <td><input type="checkbox" name="ebay-feed-for-wordpress-ssl" value="1"
+
+                            <?php
+
+                            if ( get_option( 'ebay-feed-for-wordpress-ssl' ) == 1 ) { echo "checked"; } ?>
+
+                            >
+
+                            <p><em><?php _e( 'Check this box to load images over SSL, beta mode', 'ebay-feeds-for-wordpress' ); ?></p></td>
+
+                          </tr>
+
                         </tbody>
 
                       </table>
@@ -432,6 +458,7 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-flush-cache' );
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-item-div-wrapper' );
   register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-force-feed' );
+  register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-ssl' );
 
 }
 
@@ -598,6 +625,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "" ) {
   $class = get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' );
   $disprss_items = "";
   $display = "";
+  $ssl = get_option( 'ebay-feeds-for-wordpress-ssl' );
 
   if ( $dispnum == "" || $dispnum == "null" ) {
 
@@ -678,11 +706,18 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "" ) {
       $display .= "href='".$dispitem->get_permalink()."'>".$dispitem->get_title()."</a></h4>";
 
       if ( $blank == "1" ) {
-        $display .= $dispitem->get_description();
+        $newdescription .= $dispitem->get_description();
       } else {
         $newdescription = str_replace( 'target="_blank"', '', $dispitem->get_description() );
-        $display .= $newdescription;
       }
+
+      if ( $ssl == "1" ) {
+
+        $newdescription = str_replace( "<img src='http://","<img src='https://", $newdescription );
+
+      }
+
+      $display .= $newdescription;
 
       if ( $class ) {
         $display .= "</div>";
