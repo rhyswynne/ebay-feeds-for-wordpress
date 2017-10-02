@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.10
+Version:      1.11
 Author:       Winwar Media
 Author URI:   https://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
@@ -92,20 +92,18 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
 
   		if ( $blank == "1" ) {
 
-  			$newdescription .= $item->get_description();
-
-
+        $newdescription = str_replace( 'target="_blank"', '', $item->get_description() );
 
   		} else {
 
-  			$newdescription = str_replace( 'target="_blank"', '', $item->get_description() );
-  			
+
+        $newdescription = $item->get_description();  			
 
   		}
 
       if ( $ssl == "1" ) {
 
-        $newdescription = str_replace( "<img src='http://","<img src='https://", $newdescription );
+        $newdescription .= str_replace( "<img src='http://","<img src='https://", $newdescription );
 
       }
 
@@ -706,9 +704,10 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "" ) {
       $display .= "href='".$dispitem->get_permalink()."'>".$dispitem->get_title()."</a></h4>";
 
       if ( $blank == "1" ) {
-        $newdescription .= $dispitem->get_description();
-      } else {
         $newdescription = str_replace( 'target="_blank"', '', $dispitem->get_description() );
+      } else {
+        $newdescription = $dispitem->get_description();
+
       }
 
       if ( $ssl == "1" ) {
