@@ -8,7 +8,7 @@ Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
 
-Version:      1.8
+Version:      1.13
 
 Author:       Rhys Wynne
 
@@ -53,6 +53,28 @@ We offer support in two places:-
 
 Changelog
 =========
+1.13
+----
+* Fix bug that links weren't nofollowing in the description.
+* Add "Subscribe to Newsletter" checkbox to newsletter page.
+
+1.12
+----
+* Fix bug with some images not displaying corrrectly over SSL.
+* Push to 1.12
+
+1.11
+----
+* Fix bug that some titles weren't displaying correctly
+
+1.10
+----
+* Load the feed over SSL.
+
+1.9
+---
+* Added the ability to force the feed
+
 1.8
 ---
 * Added the ability to wrap a class around each individual item.

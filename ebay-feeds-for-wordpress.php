@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on Wordpress posts, widgets and pages.
-Version:      1.12
+Version:      1.13
 Author:       Winwar Media
 Author URI:   https://winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
@@ -101,6 +101,11 @@ function ebay_feeds_for_wordpress( $url = "", $num = "" ) {
 
   		}
 
+      if ( $nofollow == "1" ) {
+        $newdescription = str_replace( "<a href=", "<a rel='nofollow' href=", $newdescription );
+
+      }
+
       if ( $ssl == "1" ) {
 
         $newdescription = str_replace( "<img src='http://","<img src='https://", $newdescription );
@@ -182,16 +187,20 @@ function ebay_feeds_for_wordpress_options() {
           <!-- Begin MailChimp Signup Form -->
           <div id="mc_embed_signup">
             <form action="https://gospelrhys.us1.list-manage.com/subscribe/post?u=c656fe50ec16f06f152034ea9&id=d9645e38c2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-              <div class="mc-field-group">
-                <label for="mce-EMAIL"><?php _e( 'Email Address', 'ebay-feeds-for-wordpress' ); ?>
-                </label>
-                <input type="hidden" value="eBay Feeds for WordPress" name="SIGNUP" class="" id="mce-SIGNUP">
-                <input type="email" value="<?php echo $current_user->user_email; ?>" name="EMAIL" class="required email" id="mce-EMAIL"><button type="submit" name="subscribe" id="mc-embedded-subscribe" class="pea_admin_green"><?php _e( 'Sign Up!', 'ebay-feeds-for-wordpress' ); ?></button>
-              </div>
-              <div id="mce-responses" class="clear">
-                <div class="response" id="mce-error-response" style="display:none"></div>
-                <div class="response" id="mce-success-response" style="display:none"></div>
-              </div>  <div class="clear"></div>
+               <div class="mc-field-group">
+                                <label for="mce-EMAIL"> <?php _e( 'Email Address', 'inline-tweet-sharer' ); ?>
+                                </label>
+                                <input type="hidden" value="eBay Feeds for WordPress" name="SIGNUP" class="" id="mce-SIGNUP">
+                                <input type="email" value="<?php echo $current_user->user_email; ?>" name="EMAIL" class="required email" id="mce-EMAIL" tabindex="10">
+                                <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="pea_admin_green"  tabindex="20">Sign Up!</button><br/>
+                                <label for="mce-MMERGE4">I want to Receive The Winwar Media Newsletter: </label>
+                                <input type="checkbox" value="yes" name="MMERGE4" class="" id="mce-MMERGE4" tabindex="15">
+
+                            </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>  <div class="clear"></div>
             </form>
           </div>
 
@@ -708,6 +717,10 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "" ) {
       } else {
         $newdescription = $dispitem->get_description();
 
+      }
+
+      if ( $nofollow == "1" ) {
+          $newdescription = str_replace( "<a href=", "<a rel='nofollow' href=", $newdescription );
       }
 
       if ( $ssl == "1" ) {
