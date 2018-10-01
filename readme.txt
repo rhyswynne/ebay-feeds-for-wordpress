@@ -44,6 +44,10 @@ We offer support in two places:-
 = 2.0 =
 * Refactored the code
 * Improved the popup window - no more multiple popups!
+* Fixed a bug that Buy It Now/Watch Items links wouldn't open in a new window.
+* Fixed a spelling error in the name of the plugin.
+* Added compatibility to Gutenberg.
+* Added the new settings API.
 
 = 1.13 =
 * Fix bug that links weren't nofollowing in the description.
@@ -162,3 +166,5 @@ To install, please do the following:-
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Set the default feed and item number in the "eBay Feeds For Wordpress" Options Page.
 4. Place `[ebayfeedsforwordpress feed="" items="5"]` in any page. Place the feed URL in the "" and the number of items to display where "5" is, in any page or post (or use the button on the rich text editor).
+
+For a full guide on how to install eBay Feeds for WordPress, check out the [how to install and setup eBay Feeds for WordPress guide](https://www.winwar.co.uk/2018/09/how-to-set-up-ebay-feeds-for-wordpress/?utm_source=installation&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) on Winwar Media.

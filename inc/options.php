@@ -85,7 +85,11 @@ function ebay_feeds_for_wordpress_options() {
 
 									<?php
 
-									if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) { echo "checked"; } ?>
+									if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) {
+										echo "checked";
+									}
+
+									?>
 
 									></td>
 
@@ -209,6 +213,8 @@ function ebay_feeds_for_wordpress_options() {
 
 																		</tr>
 
+																	<?php do_action( 'ebay_feeds_for_wordpress_added_options' ); ?>
+
 																	</tbody>
 
 																</table>
@@ -230,6 +236,24 @@ function ebay_feeds_for_wordpress_options() {
 
 													</div>
 													<div class="pea_admin_main_right">
+
+														<?php if ( !defined( 'EBFFWP_HIDE_AD' ) ) { ?>
+
+														<div class="pea_admin_box ebbfwpp_admin_box">
+															<h2><?php _e( 'eBay Feeds for WordPress Premium', 'ebay-feeds-for-wordpress' ); ?></h2>
+
+															<p class="pea_admin_clear"><?php _e( 'Want more options? eBay Feeds for WordPress Premium introduces a full templating system which can help increase clickthroughs and sales of your items on eBay.', 'ebay-feeds-for-wordpress' ); ?></p>
+
+															<p class="pea_admin_clear"><?php _e( 'For more details, please visit the link below', 'ebay-feeds-for-wordpress' ); ?></p>
+
+															<p class="pea_admin_clear"><?php _e( 'To get a £5 discount, use the discount code ', 'ebay-feeds-for-wordpress' ); ?><strong>5FREE</strong>.</p>
+
+															<p class="pea_admin_clear text-center"><a href="https://www.winwar.co.uk/plugins/ebay-feeds-for-wordpress-premium/?utm_source=options-page&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress"><button class="pea_admin_green"><?php _e( 'Go Premium Today', 'ebay-feeds-for-wordpress' ); ?></button></a></p>
+
+														</div>
+
+														<?php } ?>
+
 														<div class="pea_admin_box">
 															<h2><?php _e( 'Like this Plugin?', 'ebay-feeds-for-wordpress' ); ?></h2>
 															<a href="<?php echo EBFW_EXTEND_URL; ?>" target="_blank"><button type="submit" class="pea_admin_green"><?php _e( 'Rate this plugin &#9733; &#9733; &#9733; &#9733; &#9733;', 'ebay-feeds-for-wordpress' ); ?></button></a><br><br>
@@ -268,8 +292,6 @@ function ebay_feeds_for_wordpress_options() {
 																})();
 															</script>
 														</div>
-
-														<center><a href="<?php echo EBFW_DONATE_LINK; ?>" target="_blank"><img class="paypal" src="<?php echo EBAYFEEDSFORWORDPRESS_PLUGIN_URL .  '/paypal.gif' ?>" width="147" height="47" title="Please Donate - it helps support this plugin!"></a></center>
 
 														<div class="pea_admin_box">
 															<h2><?php _e( 'About the Author', 'ebay-feeds-for-wordpress' ); ?></h2>
@@ -314,5 +336,7 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-item-div-wrapper' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-force-feed' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-ssl' );
+
+	do_action( 'ebay_feeds_for_wordpress_added_options_processing' );
 
 }

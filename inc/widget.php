@@ -48,7 +48,7 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 
 		echo $text;
 
-		echo ebay_feeds_for_wordpress( $feed, $num );
+		echo ebay_feeds_for_wordpress_notecho( $feed, $num );
 
 		echo $after_widget;
 
@@ -105,4 +105,4 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 function ebay_feeds_for_wordpress_Widget() {
   // curl need to be installed
 	register_widget( 'ebay_feeds_for_wordpress_Widget_class' );
-} add_action( 'widgets_init', 'ebay_feeds_for_wordpress_Widget' );
+} add_action( 'widgets_init', 'ebay_feeds_for_wordpress_Widget', 10 );
