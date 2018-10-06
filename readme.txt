@@ -3,7 +3,7 @@ Plugin Name:  eBay Feeds For Wordpress
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      2.0
+Version:      2.0.2
 Tested Up to: 4.9
 Author:       Rhys Wynne
 Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
@@ -19,6 +19,9 @@ Display feeds of eBay Products from eBay Partner Network on your site.
 eBay Feeds For WordPress allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
 
 *Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress/) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/?utm_source=description&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) to get an answer within 1 business day.
+
+= eBay Feeds for WordPress Premium =
+[**eBay Feeds for WordPress Premium**](https://www.winwar.co.uk/plugins/ebay-feeds-for-wordpress-premium/?utm_source=ebayfeedsforwordpresspremium&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) is a plugin that extends the usability of eBay Feeds for WordPress to allow you to create simple templates. You can turn feeds into beautiful shop style layouts, encouraging clickthroughs, higher sales and more referrals.
 
 = About Winwar Media =
 This plugin is made by [**Winwar Media**](http://winwar.co.uk/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress), a WordPress Development and Training Agency in Manchester, UK.
@@ -41,6 +44,12 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 2.0.2 =
+* Fix a bug with the images loading over SSL.
+
+= 2.0.1 =
+* Fix an error.
+
 = 2.0 =
 * Refactored the code
 * Improved the popup window - no more multiple popups!

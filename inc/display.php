@@ -37,7 +37,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 	$class = get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' );
 	$disprss_items = "";
 	$display = "";
-	$ssl = get_option( 'ebay-feeds-for-wordpress-ssl' );
+	$ssl 	= get_option( 'ebay-feed-for-wordpress-ssl' );
 
 	if ( $dispnum == "" || $dispnum == "null" ) {
 
@@ -134,9 +134,9 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 			if ( $nofollow == "1" ) {
 				$newdescription = str_replace( "<a href=", "<a rel='nofollow' href=", $newdescription );
 			}
-
+			
 			if ( $ssl == "1" ) {
-
+				
 				$newdescription = str_replace( "<img src='http://","<img src='https://", $newdescription );
 
 			}
@@ -153,7 +153,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 	$display .= "</div>";
 
 	if ( $link == 1 ) {
-		$display .= __( '<a href="http://winwar.co.uk/plugins/ebay-feeds-wordpress/">eBay Feeds for WordPress</a> by <a href="http://winwar.co.uk/">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' );
+		$display .= __( '<a href="https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/">eBay Feeds for WordPress</a> by <a href="http://winwar.co.uk/">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' );
 	}
 
 

@@ -209,7 +209,7 @@ function ebay_feeds_for_wordpress_options() {
 
 																		>
 
-																		<p><em><?php _e( 'Check this box to load images over SSL, beta mode', 'ebay-feeds-for-wordpress' ); ?></p></td>
+																		<p><em><?php _e( 'Check this box to load images over SSL', 'ebay-feeds-for-wordpress' ); ?></p></td>
 
 																		</tr>
 
