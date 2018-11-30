@@ -58,12 +58,14 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 	if ( $dispurls == "" || $dispurls == "null" ) {
 
-		$dispurldefault = get_option( 'ebay-feeds-for-wordpress-default' );
+		$dispurldefault = esc_attr( get_option( 'ebay-feeds-for-wordpress-default' ) );
 		$disprss = fetch_feed( $dispurldefault );
+		$disprss->enable_order_by_date(false);
 
 		if ( $disprss ) {
-
-			$disprss_items = $disprss->get_items( 0, $dispnum );
+			
+			$maxitems      = $disprss->get_item_quantity( $dispnum );
+			$disprss_items = $disprss->get_items( 0, $maxitems );
 
 		} else {
 
@@ -75,15 +77,16 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 		}
 
 	} else {
-		$dispurls = str_replace( "&amp;", "&", $dispurls );
+		$dispurls = str_replace( '&amp;', '&', $dispurls );
 		$disprss = fetch_feed( $dispurls );
+		$disprss->enable_order_by_date(false);
 
 		//wp_die( print_r( $disprss ) );
 
 		if ( !is_wp_error( $disprss ) ) {
-
-			$disprss_items = $disprss->get_items( 0, $dispnum );
-
+			$maxitems      = $disprss->get_item_quantity( $dispnum ); 
+			$disprss_items = $disprss->get_items( 0, $maxitems );
+			//print_r( $disprss_items );
 		} else {
 
 			if ( current_user_can( 'manage_options' ) && 1 == $debug ) {
@@ -107,7 +110,13 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 	if ( $disprss_items ) {
 
+		//echo '<!-- DISPITEM: ' . print_r( $disprss_items[0]->feed, true ) . '-->';
+
 		foreach ( $disprss_items as $dispitem ) {
+
+			echo '<!-- DISPITEM: ' . print_r( $dispitem, true ) . '-->';
+
+			echo "<!-- TITLE: " . $dispitem->get_title() . '-->';
 
 			$title = "<h4 class='ebayfeedtitle'><a class='ebayfeedlink' ";
 
