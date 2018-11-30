@@ -12,7 +12,7 @@ function ebay_feeds_for_wordpress_enqueue_block_editor_assets() {
 	wp_enqueue_script(
 		'ebay-feeds-for-wordpress-gutenberg',
 		EBAYFEEDSFORWORDPRESS_PLUGIN_URL . '/block-editor-plugin.js',
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'underscore' ),
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', /* 'underscore', */ 'wp-editor'  ),
 		filemtime( EBAYFEEDSFORWORDPRESS_PLUGIN_PATH . '/block-editor-plugin.js' )
 	);
 

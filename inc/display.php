@@ -114,10 +114,6 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 		foreach ( $disprss_items as $dispitem ) {
 
-			echo '<!-- DISPITEM: ' . print_r( $dispitem, true ) . '-->';
-
-			echo "<!-- TITLE: " . $dispitem->get_title() . '-->';
-
 			$title = "<h4 class='ebayfeedtitle'><a class='ebayfeedlink' ";
 
 			if ( $blank == "1" ) {

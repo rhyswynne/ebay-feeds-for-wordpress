@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.
-Version:      2.1
+Version:      2.2
 Author:       Winwar Media
 Author URI:   https://www.winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
@@ -35,7 +35,7 @@ if ( is_admin() ) { // admin actions
 // non-admin functions
 add_action( 'init', 'ebay_feeds_for_wordpress_addbuttons', 10 );
 add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_textdomain' );
-add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_check_for_gutenberg', 10 );
+add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_check_for_gutenberg', 50 );
 add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_add_shortcode', 10 );
 
 /**
@@ -59,7 +59,7 @@ if ( 1 == get_option( 'ebay-feed-for-wordpress-flush-cache' ) ) {
 
 // Gutenberg Support
 function ebay_feeds_for_wordpress_check_for_gutenberg() {
-	if ( function_exists( 'the_gutenberg_project' ) ) {
+	if ( function_exists( 'register_block_type' ) ) {
 		//wp_die( "In here?");
 		add_action( 'enqueue_block_editor_assets', 'ebay_feeds_for_wordpress_enqueue_block_editor_assets', 10 );
 		add_action( 'init', 'ebay_feeds_for_wordpress_init_gutenberg_block' );  
