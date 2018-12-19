@@ -8,7 +8,6 @@
 	var MediaUpload = wp.blocks.MediaUpload;
   var InspectorControls = wp.editor.InspectorControls;
   var TextControl = wp.components.TextControl;
-  console.log( "Added 2 Nulls" );
 	//var SelectControl = wp.blocks.InspectorControls.SelectControl;
 
   const iconeBay = el('svg', { width: 25, height: 25 },
