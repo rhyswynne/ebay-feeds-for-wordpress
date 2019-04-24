@@ -81,30 +81,14 @@ function ebay_feeds_for_wordpress_options() {
 
 								<th scope="row" style="width:400px"><label><?php _e( 'Open Links In New Window?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-								<td><input type="checkbox" name="ebay-feeds-for-wordpress-link-open-blank" value="1"
-
-									<?php
-
-									if ( get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) == 1 ) {
-										echo "checked";
-									}
-
-									?>
-
-									></td>
+								<td><input type="checkbox" name="ebay-feeds-for-wordpress-link-open-blank" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) ); ?>></td>
 
 								</tr>
 								<tr valign="top">
 
 									<th scope="row" style="width:400px"><label><?php _e( 'Nofollow Links?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-									<td><input type="checkbox" name="ebay-feeds-for-wordpress-nofollow-links" value="1"
-
-										<?php
-
-										if ( get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) == 1 ) { echo "checked"; } ?>
-
-										></td>
+									<td><input type="checkbox" name="ebay-feeds-for-wordpress-nofollow-links" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) ); ?>></td>
 
 									</tr>
 
@@ -113,13 +97,7 @@ function ebay_feeds_for_wordpress_options() {
 
 										<th scope="row" style="width:400px"><label><?php _e( 'Link to us (optional, but appreciated)', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-										<td><input type="checkbox" name="ebay-feeds-for-wordpress-link" value="1"
-
-											<?php
-
-											if ( get_option( 'ebay-feeds-for-wordpress-link' ) == 1 ) { echo "checked"; } ?>
-
-											></td>
+										<td><input type="checkbox" name="ebay-feeds-for-wordpress-link" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-link' ) ); ?>></td>
 
 										</tr>
 
@@ -128,7 +106,16 @@ function ebay_feeds_for_wordpress_options() {
 											<th scope="row" style="width:400px"><?php _e( 'Item Div Wrapper Class: ', 'ebay-feeds-for-wordpress' ); ?></th>
 
 											<td><input type="text" name="ebay-feeds-for-wordpress-item-div-wrapper" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' ); ?>" /><br/>
-												<span class="description">Add a word here to add a class around each item. Leave blank to disable.</span></td>
+												<span class="description"><?php _e( 'Add a word here to add a class around each item. Leave blank to disable.', 'ebay-feeds-for-wordpress' ); ?> </span></td>
+
+											</tr>
+
+										<tr valign="top">
+
+											<th scope="row" style="width:400px"><?php _e( 'Image Maximum Width: ', 'ebay-feeds-for-wordpress' ); ?></th>
+
+											<td><input type="number" step="1" min="1" name="ebay-feeds-for-wordpress-imax-max-width" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-imax-max-width' ); ?>" /><br/>
+												<span class="description"><?php _e( 'Set the maximum width of images in pixels.', 'ebay-feeds-for-wordpress' ); ?></span></td>
 
 											</tr>
 
@@ -136,13 +123,7 @@ function ebay_feeds_for_wordpress_options() {
 
 												<th scope="row" style="width:400px"><label><?php _e( 'Switch Debug Mode On?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-												<td><input type="checkbox" name="ebay-feeds-for-wordpress-debug" value="1"
-
-													<?php
-
-													if ( get_option( 'ebay-feeds-for-wordpress-debug' ) == 1 ) { echo "checked"; } ?>
-
-													>
+												<td><input type="checkbox" name="ebay-feeds-for-wordpress-debug" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-debug' ) ); ?>>
 
 													<p><em><?php printf( __('Use this to identify problems with the feed or plugin. If switched on, logged in users will be able to see errors of the feed. If you <a href="%s">ask for support</a>, this will be the first thing we ask you to do!</em>', 'ebay-feeds-for-wordpress' ), 'http://winwar.co.uk/priority-support/?utm_source=settings-page&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress' ); ?></p></td>
 
@@ -169,13 +150,7 @@ function ebay_feeds_for_wordpress_options() {
 
 													<th scope="row" style="width:400px"><label><?php _e( 'Disable Feed Caching?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-													<td><input type="checkbox" name="ebay-feed-for-wordpress-flush-cache" value="1"
-
-														<?php
-
-														if ( get_option( 'ebay-feed-for-wordpress-flush-cache' ) == 1 ) { echo "checked"; } ?>
-
-														>
+													<td><input type="checkbox" name="ebay-feed-for-wordpress-flush-cache" value="1" <?php checked( 1, get_option( 'ebay-feed-for-wordpress-flush-cache' ) ); ?>>
 
 														<p><em><?php _e( 'If enabled, this flushes the cache. Use this if you have the odd problem with the feeds displaying incorrectly', 'ebay-feeds-for-wordpress' ); ?></p></td>
 
@@ -185,13 +160,7 @@ function ebay_feeds_for_wordpress_options() {
 
 															<th scope="row" style="width:400px"><label><?php _e( 'Enable Force Feed?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-															<td><input type="checkbox" name="ebay-feed-for-wordpress-force-feed" value="1"
-
-																<?php
-
-																if ( get_option( 'ebay-feed-for-wordpress-force-feed' ) == 1 ) { echo "checked"; } ?>
-
-																>
+															<td><input type="checkbox" name="ebay-feed-for-wordpress-force-feed" value="1" <?php checked( 1, get_option( 'ebay-feed-for-wordpress-force-feed' ) ); ?>>
 
 																<p><em><?php _e( 'Check this box to force the feed', 'ebay-feeds-for-wordpress' ); ?></p></td>
 
@@ -201,13 +170,7 @@ function ebay_feeds_for_wordpress_options() {
 
 																	<th scope="row" style="width:400px"><label><?php _e( 'Load Images over SSL', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-																	<td><input type="checkbox" name="ebay-feed-for-wordpress-ssl" value="1"
-
-																		<?php
-
-																		if ( get_option( 'ebay-feed-for-wordpress-ssl' ) == 1 ) { echo "checked"; } ?>
-
-																		>
+																	<td><input type="checkbox" name="ebay-feed-for-wordpress-ssl" value="1" <?php checked( 1, get_option( 'ebay-feed-for-wordpress-ssl' ) ); ?>>
 
 																		<p><em><?php _e( 'Check this box to load images over SSL', 'ebay-feeds-for-wordpress' ); ?></p></td>
 
@@ -336,6 +299,7 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-item-div-wrapper' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-force-feed' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-ssl' );
+	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-imax-max-width' );
 
 	do_action( 'ebay_feeds_for_wordpress_added_options_processing' );
 

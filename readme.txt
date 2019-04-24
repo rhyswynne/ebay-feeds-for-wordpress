@@ -3,8 +3,8 @@ Plugin Name:  eBay Feeds For Wordpress
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      2.2.1
-Tested Up to: 5.0
+Version:      2.3.1
+Tested Up to: 5.1
 Author:       Rhys Wynne
 Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Contributors: rhyswynne
@@ -22,6 +22,8 @@ eBay Feeds For WordPress allows you to quickly and easily place feeds from the e
 
 = eBay Feeds for WordPress Premium =
 [**eBay Feeds for WordPress Premium**](https://www.winwar.co.uk/plugins/ebay-feeds-for-wordpress-premium/?utm_source=ebayfeedsforwordpresspremium&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) is a plugin that extends the usability of eBay Feeds for WordPress to allow you to create simple templates. You can turn feeds into beautiful shop style layouts, encouraging clickthroughs, higher sales and more referrals.
+
+Also, from 2.3, you can now use eBay Feeds for WordPress Premium to introduce smart links into your post. Save time and effort creating affiliate links to eBay using Smart Links!
 
 = About Winwar Media =
 This plugin is made by [**Winwar Media**](http://winwar.co.uk/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress), a WordPress Development and Training Agency in Manchester, UK.
@@ -44,6 +46,20 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 2.4 =
+* Added the ability to set max image width.
+* Fixed a few bugs with a few untranslatable strings.
+* Pushed to v2.4
+
+= 2.3.1 =
+* Tested with 5.1.
+
+= 2.3 =
+* Fix a bug that occurs when you try running the Premium version at the same time as the free version that results in a notice displaying in Gutenberg as you register two blocks with the same name.
+* Options page cleanup in the code.
+
+Not a huge release, but worth installing if you use the premium version.
+
 = 2.2.1 =
 * Fix a small bug that results in a fatal error for an invalid feed.
 

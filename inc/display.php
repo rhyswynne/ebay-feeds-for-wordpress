@@ -187,3 +187,20 @@ function ebayfeedsforwordpress_shortcode( $atts ) {
 	$feeddisplay = ebay_feeds_for_wordpress( esc_attr( $feed ), esc_attr( $items ) );
 	return $feeddisplay;
 }
+
+
+/**
+ * Add CSS to the header to display max width
+ * @return void  
+ */
+function ebayfeedsforwordpress_set_max_image_width() {
+	if ( get_option( 'ebay-feeds-for-wordpress-imax-max-width' ) ) {
+		?>
+		<style type="text/css">
+		.ebayfeed img {
+			max-width: <?php echo get_option( 'ebay-feeds-for-wordpress-imax-max-width' ); ?>px;
+		}
+		</style>
+		<?php
+	}
+}

@@ -3,7 +3,7 @@
 Plugin Name:  Ebay Feeds for WordPress
 Plugin URI:   https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.
-Version:      2.2.1
+Version:      2.4
 Author:       Winwar Media
 Author URI:   https://www.winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 
@@ -22,21 +22,28 @@ define( "EBFW_DONATE_LINK", "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick
 
 require_once( EBAYFEEDSFORWORDPRESS_PLUGIN_PATH . '/inc/core.php' );
 
+/**
+ * Function to call to initialise the plugin.
+ *
+ * @return void
+ */
+function ebay_feeds_for_wordpress_initialise_plugin() {
+	// non-admin functions
+	add_action( 'init', 'ebay_feeds_for_wordpress_addbuttons', 10 );
+	add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_textdomain' );
+	add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_check_for_gutenberg', 50 );
+	add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_add_shortcode', 10 );
+	add_action( 'wp_head', 'ebayfeedsforwordpress_set_max_image_width' );
 
-// Admin Functions
-if ( is_admin() ) { // admin actions
+	// Admin Functions
+	if ( is_admin() ) { // admin actions
 
-	add_action( 'admin_menu', 'ebay_feeds_for_wordpress_menus' );
-	add_action( 'admin_init', 'ebay_feeds_for_wordpress_options_process' );
-	add_action( 'admin_init', 'ebay_feeds_for_wordpress_add_admin_stylesheet' );
+		add_action( 'admin_menu', 'ebay_feeds_for_wordpress_menus' );
+		add_action( 'admin_init', 'ebay_feeds_for_wordpress_options_process' );
+		add_action( 'admin_init', 'ebay_feeds_for_wordpress_add_admin_stylesheet' );
 
-}
-
-// non-admin functions
-add_action( 'init', 'ebay_feeds_for_wordpress_addbuttons', 10 );
-add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_textdomain' );
-add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_check_for_gutenberg', 50 );
-add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_add_shortcode', 10 );
+	}
+} add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_initialise_plugin', 1 );
 
 /**
  * Add the shortcode when plugin is loaded.
@@ -62,7 +69,7 @@ function ebay_feeds_for_wordpress_check_for_gutenberg() {
 	if ( function_exists( 'register_block_type' ) ) {
 		//wp_die( "In here?");
 		add_action( 'enqueue_block_editor_assets', 'ebay_feeds_for_wordpress_enqueue_block_editor_assets', 10 );
-		add_action( 'init', 'ebay_feeds_for_wordpress_init_gutenberg_block' );  
+		add_action( 'init', 'ebay_feeds_for_wordpress_init_gutenberg_block', 10 );  
 	}
 }
 
