@@ -12,7 +12,7 @@ if ( !function_exists( 'register_sidebar_widget' ) || !function_exists( 'registe
 class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 
 	public function __construct() {
-		parent::__construct( 'ebay_feeds_for_wordpress_widget', 'eBay Feeds For Wordpress', array( 'description' => 'Widget for an eBay Feed' ) );
+		parent::__construct( 'ebay_feeds_for_wordpress_widget', 'WP eBay Product Feeds', array( 'description' => 'Widget for an eBay Feed' ) );
 	}
 
 
@@ -99,7 +99,7 @@ class ebay_feeds_for_wordpress_Widget_class extends WP_Widget {
 }
 
 /**
- * Register the eBay Feeds for WordPress widget
+ * Register the WP eBay Product Feeds widget
  * @return void
  */
 function ebay_feeds_for_wordpress_Widget() {

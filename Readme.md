@@ -1,12 +1,12 @@
-eBay Feeds for WordPress
+WP eBay Product Feeds
 ========================
-Plugin Name:  eBay Feeds For Wordpress
+Plugin Name:  WP eBay Product Feeds
 
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/
 
 Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 
-Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
+Description:  Formerly eBay Feeds for WordPress. Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
 
 Version:      1.13
 
@@ -18,7 +18,7 @@ Contributors: rhyswynne
 
 Stable tag: trunk
 
-Requires at least: 3.0 
+Requires at least: 3.0
 
 Tested Up to: 4.0
 
@@ -28,7 +28,7 @@ Output RSS to HTML with this simple plugin. Easy to install, set up and customis
 
 Description
 ===========
-eBay Feeds For WordPress allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
+WP eBay Product Feeds allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
 
 *Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/) to get an answer within 1 business day.
 

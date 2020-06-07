@@ -1,36 +1,37 @@
-=== eBay Feeds for WordPress ===
-Plugin Name:  eBay Feeds For Wordpress
+=== WP eBay Product Feeds ===
+Plugin Name:  WP eBay Product Feeds
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
-Description:  Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      2.4
-Tested Up to: 5.1
+Description:  Formerly eBay Feeds for WordPress. Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
+Version:      2.6
+Tested Up to: 5.4
 Author:       Rhys Wynne
 Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Contributors: rhyswynne
-Stable tag: trunk
-Requires at least: 3.0 
+Stable tag: 2.6
+Requires at least: 3.0
+Text Domain: ebay-feeds-for-wordpress
 Tags: ebay, ebay partner feeds, ebay partner network, gutenberg ready, affiliate marketing
 
 Display feeds of eBay Products from eBay Partner Network on your site.
 
 == Description ==
 
-eBay Feeds For WordPress allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
+WP eBay Product Feeds allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
 
 *Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress/) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/?utm_source=description&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) to get an answer within 1 business day.
 
-= eBay Feeds for WordPress Premium =
-[**eBay Feeds for WordPress Premium**](https://www.winwar.co.uk/plugins/ebay-feeds-for-wordpress-premium/?utm_source=ebayfeedsforwordpresspremium&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) is a plugin that extends the usability of eBay Feeds for WordPress to allow you to create simple templates. You can turn feeds into beautiful shop style layouts, encouraging clickthroughs, higher sales and more referrals.
+= WP eBay Product Feeds Premium =
+[**WP eBay Product Feeds Premium**](https://www.winwar.co.uk/plugins/ebay-feeds-for-wordpress-premium/?utm_source=ebayfeedsforwordpresspremium&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) is a plugin that extends the usability of WP eBay Product Feeds to allow you to create simple templates. You can turn feeds into beautiful shop style layouts, encouraging clickthroughs, higher sales and more referrals.
 
-Also, from 2.3, you can now use eBay Feeds for WordPress Premium to introduce smart links into your post. Save time and effort creating affiliate links to eBay using Smart Links!
+Also, from 2.3, you can now use WP eBay Product Feeds Premium to introduce smart links into your post. Save time and effort creating affiliate links to eBay using Smart Links!
 
 = About Winwar Media =
 This plugin is made by [**Winwar Media**](http://winwar.co.uk/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress), a WordPress Development and Training Agency in Manchester, UK.
 
 Why don't you?
 
-* [eBay Feeds For Wordpress](http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) WordPress Plugin homepage with further instructions.
+* [WP eBay Product Feeds](http://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) WordPress Plugin homepage with further instructions.
 * Check out more of our [WordPress Plugins](http://winwar.co.uk/plugins/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress)
 * Follow us on Social Media, such as [Facebook](https://www.facebook.com/winwaruk), [Twitter](https://twitter.com/winwaruk) or [Google+](https://plus.google.com/+WinwarCoUk)
 * [Send us an email](http://winwar.co.uk/contact-us/?utm_source=about&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress)! We like hearing from plugin users.
@@ -46,6 +47,34 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 2.6 =
+* Updated to match the premium version (and having the Italian Translation).
+* Added the ability to control the header.
+
+= 2.5.2 =
+* Removed Google +1 and Stumbleupon buttons.
+* Changed the author description.
+
+= 2.5.1 =
+* Fixed a bug that no feed will be displayed if there is only one item in the feed
+* Added text domain to allow translation.
+
+= 2.5 =
+* Introduced an important field - the "Header Field", after some affiliates were being told that their account was being deactivated by not saying their feeds were from eBay
+* Fixed a bug whereby the default feed or items were showing when the shortcode was left blank.
+
+= 2.4.4 =
+* Fixed a bug that the fallback text wasn't displaying when not present.
+
+= 2.4.3 =
+* Tested with 5.3
+
+= 2.4.2 =
+* Renamed to "WP eBay Product Feeds"
+
+= 2.4.1 =
+* Tested with 5.2
+
 = 2.4 =
 * Added the ability to set max image width.
 * Fixed a few bugs with a few untranslatable strings.
@@ -103,7 +132,7 @@ Not a huge release, but worth installing if you use the premium version.
 * Added the ability to wrap a class around each individual item.
 * Auto populate the user email addresses to get bug fixes. (it is still opt in though!)
 
-= 1.7.3 = 
+= 1.7.3 =
 * Call the JavaScript better should site_url being invalid.
 
 = 1.7.2 =
@@ -112,7 +141,7 @@ Not a huge release, but worth installing if you use the premium version.
 = 1.7.1 =
 * Fixes the issue of feeds sometimes displaying the wrong details in shortcodes.
 
-= 1.7 = 
+= 1.7 =
 * Allow the disabling of feed caching.
 
 = 1.6.3 =
@@ -137,7 +166,7 @@ Not a huge release, but worth installing if you use the premium version.
 * Cleaned up a lot of the internal code, with proper line spacing!
 * Switched fully from Blogging Dojo to Winwar Media.
 
-= 1.4 = 
+= 1.4 =
 * Stops a fatal error appearing when the feed doesn't return in the widget.
 * Fixed a PHP warning on activation when registering the widget in Debug Mode.
 
@@ -159,7 +188,7 @@ Not a huge release, but worth installing if you use the premium version.
 = 0.9.3 =
 * Added error tracking to the service.
 
-= 0.9.2 = 
+= 0.9.2 =
 * Caught an error so that an invalid/empty feed would not break the site.
 
 = 0.9.1 =
@@ -197,7 +226,7 @@ To install, please do the following:-
 
 1. Upload the plugin to the `/wp-content/plugins/` directory or use the Add New feature
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Set the default feed and item number in the "eBay Feeds For Wordpress" Options Page.
+3. Set the default feed and item number in the "WP eBay Product Feeds" Options Page.
 4. Place `[ebayfeedsforwordpress feed="" items="5"]` in any page. Place the feed URL in the "" and the number of items to display where "5" is, in any page or post (or use the button on the rich text editor).
 
-For a full guide on how to install eBay Feeds for WordPress, check out the [how to install and setup eBay Feeds for WordPress guide](https://www.winwar.co.uk/2018/09/how-to-set-up-ebay-feeds-for-wordpress/?utm_source=installation&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) on Winwar Media.
+For a full guide on how to install WP eBay Product Feeds, check out the [how to install and setup WP eBay Product Feeds guide](https://www.winwar.co.uk/2018/09/how-to-set-up-ebay-feeds-for-wordpress/?utm_source=installation&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) on Winwar Media.

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Register the eBay Feeds for WordPress Menu
+ * Register the WP eBay Product Feeds Menu
  * @return void
  */
 function ebay_feeds_for_wordpress_menus() {
 
-	add_options_page( 'eBay Feeds Options', 'ebay Feeds For Wordpress', 'manage_options', 'ebayfeedforwordpressoptions', 'ebay_feeds_for_wordpress_options' );
+	add_options_page( 'eBay Feeds Options', 'WP eBay Product Feeds', 'manage_options', 'ebayfeedforwordpressoptions', 'ebay_feeds_for_wordpress_options' );
 
 }
 
 /**
- * Create and add the eBay Feeds for WordPress Options Page
+ * Create and add the WP eBay Product Feeds Options Page
  * @return void
  */
 function ebay_feeds_for_wordpress_options() {
@@ -90,16 +90,47 @@ function ebay_feeds_for_wordpress_options() {
 
 									<td><input type="checkbox" name="ebay-feeds-for-wordpress-nofollow-links" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-nofollow-links' ) ); ?>></td>
 
-									</tr>
+								</tr>
 
 
-									<tr valign="top">
+								<tr valign="top">
 
-										<th scope="row" style="width:400px"><label><?php _e( 'Link to us (optional, but appreciated)', 'ebay-feeds-for-wordpress' ); ?></label></th>
+									<th scope="row" style="width:400px"><label><?php _e( 'Link to us (optional, but appreciated)', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
-										<td><input type="checkbox" name="ebay-feeds-for-wordpress-link" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-link' ) ); ?>></td>
+									<td><input type="checkbox" name="ebay-feeds-for-wordpress-link" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-link' ) ); ?>></td>
 
-										</tr>
+								</tr>
+
+
+								<tr valign="top">
+
+									<th scope="row" style="width:400px"><label><?php _e( 'Disable Header', 'ebay-feeds-for-wordpress' ); ?></label></th>
+
+									<td><input type="checkbox" name="ebay-feeds-for-wordpress-disable-header" id="ebay-feeds-for-wordpress-disable-header" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-disable-header' ) ); ?>>
+
+									<?php
+
+									$warningstring = '';
+
+									if ( get_option( 'ebay-feeds-for-wordpress-disable-header' ) ) {
+										$warningstring = ' style="display:block;"';
+									}
+
+									?>
+									<div class="ebffwp-warningstring" <?php echo $warningstring; ?>><strong><em>Please Note - disabling the header string can lead to accounts being disabled. Please place something above the listings to indicate the listings are eBay listings.</em></strong></div>
+
+									</td>
+
+								</tr>
+
+								<tr valign="top">
+
+									<th scope="row" style="width:400px"><?php _e( 'Default Header: ', 'ebay-feeds-for-wordpress' ); ?></th>
+
+									<td><input type="text" name="ebay-feeds-for-wordpress-default-header" class="regular-text" value="<?php echo get_option( 'ebay-feeds-for-wordpress-default-header' ); ?>" /><br/>
+										<span class="description"><?php _e( 'Default header to use above feeds. Wrapped in <code>&lt;h3&gt;&lt;/h3&gt;</code> tags.', 'ebay-feeds-for-wordpress' ); ?> </span></td>
+
+								</tr>
 
 										<tr valign="top">
 
@@ -108,7 +139,7 @@ function ebay_feeds_for_wordpress_options() {
 											<td><input type="text" name="ebay-feeds-for-wordpress-item-div-wrapper" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' ); ?>" /><br/>
 												<span class="description"><?php _e( 'Add a word here to add a class around each item. Leave blank to disable.', 'ebay-feeds-for-wordpress' ); ?> </span></td>
 
-											</tr>
+										</tr>
 
 										<tr valign="top">
 
@@ -203,9 +234,9 @@ function ebay_feeds_for_wordpress_options() {
 														<?php if ( !defined( 'EBFFWP_HIDE_AD' ) ) { ?>
 
 														<div class="pea_admin_box ebbfwpp_admin_box">
-															<h2><?php _e( 'eBay Feeds for WordPress Premium', 'ebay-feeds-for-wordpress' ); ?></h2>
+															<h2><?php _e( 'WP eBay Product Feeds Premium', 'ebay-feeds-for-wordpress' ); ?></h2>
 
-															<p class="pea_admin_clear"><?php _e( 'Want more options? eBay Feeds for WordPress Premium introduces a full templating system which can help increase clickthroughs and sales of your items on eBay.', 'ebay-feeds-for-wordpress' ); ?></p>
+															<p class="pea_admin_clear"><?php _e( 'Want more options? WP eBay Product Feeds Premium introduces a full templating system which can help increase clickthroughs and sales of your items on eBay.', 'ebay-feeds-for-wordpress' ); ?></p>
 
 															<p class="pea_admin_clear"><?php _e( 'For more details, please visit the link below', 'ebay-feeds-for-wordpress' ); ?></p>
 
@@ -233,27 +264,8 @@ function ebay_feeds_for_wordpress_options() {
 															<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>" data-related="WPBrewers">Tweet</a>
 															<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 															<br>
-															<a href="http://bufferapp.com/add" class="buffer-add-button" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-count="horizontal" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>">Buffer</a><script type="text/javascript" src="http://static.bufferapp.com/js/button.js"></script>
-															<br>
-															<div class="g-plusone" data-size="medium" data-href="<?php echo EBFW_PLUGIN_URL; ?>"></div>
-															<script type="text/javascript">
-																window.___gcfg = {lang: 'en-GB'};
+															<a href="http://bufferapp.com/add" class="buffer-add-button" data-text="Just been using <?php echo EBFW_PLUGIN_NAME; ?> #WordPress plugin" data-url="<?php echo EBFW_PLUGIN_URL; ?>" data-count="horizontal" data-via="<?php echo EBFW_AUTHOR_TWITTER; ?>">Buffer</a><script type="text/javascript" src="https://static.bufferapp.com/js/button.js"></script>
 
-																(function() {
-																	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-																	po.src = 'https://apis.google.com/js/plusone.js';
-																	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-																})();
-															</script>
-															<br>
-															<su:badge layout="3" location="<?php echo EBFW_PLUGIN_URL?>"></su:badge>
-															<script type="text/javascript">
-																(function() {
-																	var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
-																	li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
-																	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
-																})();
-															</script>
 														</div>
 
 														<div class="pea_admin_box">
@@ -269,7 +281,7 @@ function ebay_feeds_for_wordpress_options() {
 															<p class="pea_admin_clear"><img class="pea_admin_fl" src="<?php echo $rhys_url; ?>" alt="Rhys Wynne" /> <h3>Rhys Wynne</h3><br><a href="https://twitter.com/rhyswynne" class="twitter-follow-button" data-show-count="false">Follow @rhyswynne</a>
 																<div class="fb-subscribe" data-href="https://www.facebook.com/rhysywynne" data-layout="button_count" data-show-faces="false" data-width="220"></div>
 															</p>
-															<p class="pea_admin_clear"><?php _e( 'Rhys Wynne is the Lead Developer at FireCask and a freelance WordPress developer and blogger. His plugins have had a total of 100,000 downloads, and his premium plugins have generated four figure sums in terms of sales. Rhys likes rubbish football (supporting Colwyn Bay FC) and Professional Wrestling.', 'ebay-feeds-for-wordpress' ); ?></p>
+															<p class="pea_admin_clear"><?php _e( 'Rhys Wynne is a freelance WordPress developer at Dwinrhys.com, conference speaker and blogger. His plugins have had a total of 100,000 downloads, and his premium plugins have generated four figure sums in terms of sales. Rhys likes rubbish football (supporting Colwyn Bay FC) and Professional Wrestling.', 'ebay-feeds-for-wordpress' ); ?></p>
 														</div>
 
 
@@ -283,7 +295,7 @@ function ebay_feeds_for_wordpress_options() {
 
 
 /**
- * Process the eBay Feeds for WordPress options page.
+ * Process the WP eBay Product Feeds options page.
  * @return void
  */
 function ebay_feeds_for_wordpress_options_process() { // whitelist options
@@ -300,6 +312,8 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-force-feed' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feed-for-wordpress-ssl' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-imax-max-width' );
+	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-disable-header' );
+	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-default-header' );
 
 	do_action( 'ebay_feeds_for_wordpress_added_options_processing' );
 

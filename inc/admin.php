@@ -18,9 +18,9 @@ function ebay_feeds_for_wordpress_addbuttons() {
 
 
 /**
- * Add the button for ebay Feeds for WordPress
+ * Add the button for WP eBay Product Feeds
  * @param  array 		$buttons 			Array of current buttons
- * @return array 							Array of buttons with eBay Feeds for WordPress added
+ * @return array 							Array of buttons with WP eBay Product Feeds added
  */
 function ebay_feeds_for_wordpress_button( $buttons ) {
   array_push( $buttons, "separator", "ebffwplugin" );

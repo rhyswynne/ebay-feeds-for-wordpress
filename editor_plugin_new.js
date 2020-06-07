@@ -1,5 +1,3 @@
-// Search for Highlight Box in new expedia theme
-
 (function() {
 	tinymce.PluginManager.add('ebffwplugin', function( editor, url ) {
 		editor.addButton( 'ebffwplugin', {
@@ -20,10 +18,15 @@
 						name: 'items',
 						label: 'Items to Display'
 					},
+					{
+						type: 'textbox',
+						name: 'header',
+						label: 'Header'
+					},
 					],
 					onsubmit: function( e ) {
-						
-						ebaystring = '[ebayfeedsforwordpress feed="' + e.data.feedurl + '" items="' + e.data.items + '"]';
+
+						ebaystring = '[ebayfeedsforwordpress feed="' + e.data.feedurl + '" items="' + e.data.items + '" header="' + e.data.header + '"]';
 
 						editor.insertContent( ebaystring );
 					}

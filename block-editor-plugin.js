@@ -29,6 +29,9 @@
         },
         items: {
           type: 'string'
+        },
+        header: {
+          type: 'string'
         }
       },
 
@@ -40,6 +43,7 @@
        var label = props.attributes.label ? props.attributes.label : '';
        var items = props.attributes.items ? props.attributes.items : '';
        var feedurl = props.attributes.feedurl ? props.attributes.feedurl : '';
+       var header = props.attributes.header ? props.attributes.header : '';
 
        var extrastring = items ? " showing " + items + " items" : "";
 
@@ -61,6 +65,12 @@
 
       }
 
+      function setHeader(nextValue) {
+
+        props.setAttributes({ header: nextValue });
+
+        }
+
       /* return [
 
       el(
@@ -81,10 +91,10 @@
           {
             label: i18n.__( 'Label' ),
             value: label,
-            help: i18n.__( 'Used to identify the feed within the WordPress Editor. Will not be shown on the site.' ), 
+            help: i18n.__( 'Used to identify the feed within the WordPress Editor. Will not be shown on the site.' ),
             instanceId: 'ebay-feeds-for-wordpress-label',
             onChange: setLabel,
-          } 
+          }
           ),
         el(
          TextControl,
@@ -93,7 +103,7 @@
           value: feedurl,
           instanceId: 'ebay-feeds-for-wordpress-feed-url',
           onChange: setFeedValue,
-        } 
+        }
         ),
         el(
          TextControl,
@@ -102,7 +112,7 @@
           value: items,
           onChange: setNumberOfItemsValue,
           instanceId: 'ebay-feeds-for-wordpress-feed-items',
-        } 
+        }
         ),
         )
 
@@ -146,7 +156,17 @@
                 onChange: setNumberOfItemsValue,
                 instanceId: 'ebay-feeds-for-wordpress-feed-items',
               }
+            ),
+            el(
+              TextControl,
+              {
+                label: i18n.__('Header'),
+                value: header,
+                onChange: setHeader,
+                instanceId: 'ebay-feeds-for-wordpress-feed-header',
+              }
             )
+
           ),
           el (
             'h3',

@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Enqueue the eBay Feeds for WordPress Gutenberg editor JavaScript assets.
+ * Enqueue the WP eBay Product Feeds Gutenberg editor JavaScript assets.
  *
  * @return void
  */
@@ -38,7 +38,7 @@ function ebay_feeds_for_wordpress_init_gutenberg_block() {
  *
  * So we add the form using PHP, it may not be right, but it's easy.
  *
- * @param  array 		$attributes 			All attributes saved in the block. 
+ * @param  array 		$attributes 			All attributes saved in the block.
  * @return string 								The eBay Feed
  */
 function ebay_feeds_for_wordpress_on_render_block( $attributes ) {
@@ -52,6 +52,10 @@ function ebay_feeds_for_wordpress_on_render_block( $attributes ) {
 
 		if ( isset( $attributes['items'] ) ) {
 			$extrastring .= ' items="' . $attributes['items'] . '" ';
+		}
+
+		if ( isset( $attributes['header'] ) ) {
+			$extrastring .= ' header="' . $attributes['header'] . '" ';
 		}
 	}
 

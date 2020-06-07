@@ -4,14 +4,14 @@
  * Main old function
  *
  * Was previously a carbon copy of the ebay_feeds_for_wordpress_notecho function. Now it simply calls it since 2.0. Easier to maintain.
- * 
+ *
  * @param  string $url 		The URL of the Feed
  * @param  string $num 		The number of items to display
  * @return mixed 			String of the feed if echo is false, string if true
  */
-function ebay_feeds_for_wordpress( $url = "", $num = "", $echo = false, $args = array() ) {
+function ebay_feeds_for_wordpress( $url = "", $num = "", $echo = false, $args = array(), $header = '' ) {
 
-	$display = ebay_feeds_for_wordpress_notecho( $url, $num, $args );
+	$display = ebay_feeds_for_wordpress_notecho( $url, $num, $args, $header );
 
 	if ( true == $echo ) {
 		echo $display;
@@ -22,19 +22,20 @@ function ebay_feeds_for_wordpress( $url = "", $num = "", $echo = false, $args = 
 
 
 /**
- * Function to return the eBay Feed. 
- * 
+ * Function to return the eBay Feed.
+ *
  * @param  string $dispurls The URL of the Feed
  * @param  string $dispnum  The number of items to display
  * @return string          	String of the feed content
  */
-function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args = array() ) {
-	
-	$link = get_option( "ebay-feeds-for-wordpress-link" );
-	$blank = get_option( "ebay-feeds-for-wordpress-link-open-blank" );
-	$nofollow = get_option( "ebay-feeds-for-wordpress-nofollow-links" );
-	$debug = get_option( "ebay-feeds-for-wordpress-debug" );
-	$class = get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' );
+function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args = array(), $header = '' ) {
+
+	$link          = get_option( "ebay-feeds-for-wordpress-link" );
+	$blank         = get_option( "ebay-feeds-for-wordpress-link-open-blank" );
+	$nofollow      = get_option( "ebay-feeds-for-wordpress-nofollow-links" );
+	$debug         = get_option( "ebay-feeds-for-wordpress-debug" );
+	$class         = get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' );
+	$disableheader = get_option( 'ebay-feeds-for-wordpress-disable-header' );
 	$disprss_items = "";
 	$display = "";
 	$ssl 	= get_option( 'ebay-feed-for-wordpress-ssl' );
@@ -56,14 +57,17 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 	$classstring = apply_filters( 'ebay_feeds_for_wordpress_change_class_string', $classstring, $args );
 
+	if ( ! $disableheader && $header ) {
+		$display .=  "<h3>" . $header . "</h3>";
+	}
+
 	if ( $dispurls == "" || $dispurls == "null" ) {
 
 		$dispurldefault = esc_attr( get_option( 'ebay-feeds-for-wordpress-default' ) );
-		$disprss = fetch_feed( $dispurldefault );
-		
+		$disprss        = fetch_feed( $dispurldefault );
 
 		if ( $disprss ) {
-			
+
 			if ( !is_wp_error( $disprss ) ) {
 				$disprss->enable_order_by_date(false);
 				$maxitems      = $disprss->get_item_quantity( $dispnum );
@@ -86,7 +90,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 		if ( !is_wp_error( $disprss ) ) {
 			$disprss->enable_order_by_date(false);
-			$maxitems      = $disprss->get_item_quantity( $dispnum ); 
+			$maxitems      = $disprss->get_item_quantity( $dispnum );
 			$disprss_items = $disprss->get_items( 0, $maxitems );
 			//print_r( $disprss_items );
 		} else {
@@ -110,11 +114,27 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 	$display .=  "<div class='ebayfeed'>";
 
-	if ( $disprss_items ) {
+	//print_r( $disprss_items );
 
-		//echo '<!-- DISPITEM: ' . print_r( $disprss_items[0]->feed, true ) . '-->';
+	if ( $disprss_items && $maxitems != 0 ) {
+
+		$temptitle = false;
+		$tempperm  = false;
+		$temdesc   = false;
 
 		foreach ( $disprss_items as $dispitem ) {
+
+			if ( ! $temptitle && '' != $dispitem->get_title() ) {
+				$temptitle = true;
+			}
+
+			if ( !$tempperm == '' && '' != $dispitem->get_permalink() ) {
+				$tempperm = true;
+			}
+
+			if ( $temdesc == '' && '' != $dispitem->get_description() ) {
+				$temdesc = true;
+			}
 
 			$title = "<h4 class='ebayfeedtitle'><a class='ebayfeedlink' ";
 
@@ -130,7 +150,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 			$title = apply_filters( 'ebay_feeds_for_wordpress_title_string', $title, $args );
 
-			$display .= $classstring . $title; 
+			$display .= $classstring . $title;
 
 			if ( $blank != "1" ) {
 				$newdescription = str_replace( "target='_blank'", "", $dispitem->get_description() );
@@ -141,9 +161,9 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 			if ( $nofollow == "1" ) {
 				$newdescription = str_replace( "<a href=", "<a rel='nofollow' href=", $newdescription );
 			}
-			
+
 			if ( $ssl == "1" ) {
-				
+
 				$newdescription = str_replace( "<img src='http://","<img src='https://", $newdescription );
 
 			}
@@ -154,13 +174,21 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 			$display .= "</div>";
 
+			if ( !$temptitle && ! $tempperm && ! $tempdesc ) {
+				$fallback = get_option( 'ebay_feeds_for_wordpress_fallback' );
+				$display =  "<div class='ebayfeed'>" . $fallback;
+			}
+
 		}
+	} else {
+		$fallback = get_option( 'ebay_feeds_for_wordpress_fallback' );
+		$display .= $fallback;
 	}
 
 	$display .= "</div>";
 
 	if ( $link == 1 ) {
-		$display .= __( '<a href="https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/">eBay Feeds for WordPress</a> by <a href="http://winwar.co.uk/">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' );
+		$display .= __( '<a href="https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/">WP eBay Product Feeds</a> by <a href="http://winwar.co.uk/">Winwar Media</a><br/><br/>', 'ebay-feeds-for-wordpress' );
 	}
 
 
@@ -170,28 +198,42 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 
 /**
- * Parse the eBay Feeds for WordPress Shortcode
+ * Parse the WP eBay Product Feeds Shortcode
  * @param  array  $atts  	array of attributes
  * @return string 			The display feed
  */
 function ebayfeedsforwordpress_shortcode( $atts ) {
-	$feed = get_option( 'ebay-feeds-for-wordpress-default' );
-	$items = get_option( 'ebay-feeds-for-wordpress-default-number' );
+
+	$feed   = '';
+	$items  = '';
+	$header = '';
 
 	extract( shortcode_atts( array(
-		'feed' => $feed, 'items' => $items
+		'feed' => $feed, 'items' => $items, 'header' => $header
 		), $atts ) );
+
+	if ( ! $feed ) {
+		$feed  = get_option( 'ebay-feeds-for-wordpress-default' );
+	}
+
+	if ( '' == $items ) {
+		$items = get_option( 'ebay-feeds-for-wordpress-default-number' );
+	}
+
+	if ( '' == $header ) {
+		$header = get_option( 'ebay-feeds-for-wordpress-default-header' );
+	}
 
 	$feed = html_entity_decode( $feed );
 
-	$feeddisplay = ebay_feeds_for_wordpress( esc_attr( $feed ), esc_attr( $items ) );
+	$feeddisplay = ebay_feeds_for_wordpress( esc_attr( $feed ), esc_attr( $items ), false, array(), esc_attr( $header ) );
 	return $feeddisplay;
 }
 
 
 /**
  * Add CSS to the header to display max width
- * @return void  
+ * @return void
  */
 function ebayfeedsforwordpress_set_max_image_width() {
 	if ( get_option( 'ebay-feeds-for-wordpress-imax-max-width' ) ) {

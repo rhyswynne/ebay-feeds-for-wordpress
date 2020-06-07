@@ -1,20 +1,22 @@
 <?php
 /*
-Plugin Name:  Ebay Feeds for WordPress
+Plugin Name:  WP eBay Product Feeds
 Plugin URI:   https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
-Description:  Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.
-Version:      2.4
+Description:  Former eBay Feeds for WordPress. Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.
+Version:      2.6
 Author:       Winwar Media
 Author URI:   https://www.winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
-
+Text Domain:  ebay-feeds-for-wordpress
 */
+
+define( "EBFW_PLUGIN_VERSION", "2.6" );
 
 define( 'EBAYFEEDSFORWORDPRESS_PLUGIN_PATH', dirname( __FILE__ ) );
 define( 'EBAYFEEDSFORWORDPRESS_PLUGIN_URL', plugins_url( '', __FILE__ ) );
 
 
-define( "EBFW_PLUGIN_NAME", "eBay Feeds For WordPress" );
-define( "EBFW_PLUGIN_TAGLINE", __( "Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.", "ebay-feeds-for-wordpress" ) );
+define( "EBFW_PLUGIN_NAME", "WP eBay Product Feeds" );
+define( "EBFW_PLUGIN_TAGLINE", __( "Former eBay Feeds for WordPress. Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.", "ebay-feeds-for-wordpress" ) );
 define( "EBFW_PLUGIN_URL", "https://winwar.co.uk/plugins/ebay-feeds-wordpress/" );
 define( "EBFW_EXTEND_URL", "https://wordpress.org/extend/plugins/ebay-feeds-for-wordpress/" );
 define( "EBFW_AUTHOR_TWITTER", "rhyswynne" );
@@ -47,7 +49,7 @@ function ebay_feeds_for_wordpress_initialise_plugin() {
 
 /**
  * Add the shortcode when plugin is loaded.
- * 
+ *
  * This is removed on the premium version of the product.
  *
  * @return void
@@ -69,7 +71,7 @@ function ebay_feeds_for_wordpress_check_for_gutenberg() {
 	if ( function_exists( 'register_block_type' ) ) {
 		//wp_die( "In here?");
 		add_action( 'enqueue_block_editor_assets', 'ebay_feeds_for_wordpress_enqueue_block_editor_assets', 10 );
-		add_action( 'init', 'ebay_feeds_for_wordpress_init_gutenberg_block', 10 );  
+		add_action( 'init', 'ebay_feeds_for_wordpress_init_gutenberg_block', 10 );
 	}
 }
 
@@ -80,7 +82,7 @@ register_activation_hook( __FILE__, 'ebay_feeds_for_wordpress_install' );
 
 /**
  * Preset options on install
- * 
+ *
  * @return void
  */
 function ebay_feeds_for_wordpress_install() {
