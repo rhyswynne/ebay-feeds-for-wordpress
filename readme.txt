@@ -3,21 +3,23 @@ Plugin Name:  WP eBay Product Feeds
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Formerly eBay Feeds for WordPress. Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      2.6
-Tested Up to: 5.4
+Version:      3.4
+Tested Up to: 6.1.1
 Author:       Rhys Wynne
 Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Contributors: rhyswynne
-Stable tag: 2.6
+Stable tag: 3.3.1
 Requires at least: 3.0
 Text Domain: ebay-feeds-for-wordpress
-Tags: ebay, ebay partner feeds, ebay partner network, gutenberg ready, affiliate marketing
+Tags: ebay, ebay partner feeds, block, ebay partner network, gutenberg ready, affiliate marketing
 
 Display feeds of eBay Products from eBay Partner Network on your site.
 
 == Description ==
 
 WP eBay Product Feeds allows you to quickly and easily place feeds from the eBay Partner Network into your WordPress blog. These can easily be embedded into posts, placed as widgets or inserted into the themes - flexibility is huge. This plugin is ideal for bloggers who wish to make more money through their blogs by promoting eBay's affiliate programme, as well as users who sell their own items on eBay.
+
+*Please Note* From 1st September 2020 the Dynamic Feed Generator from eBay is being withdrawn. We've tested another service - [RSS Ground](https://www.winwar.co.uk/?post_type=surl&p=4793&preview=true), that will be used to handle feeds, though any other feed generator will work.
 
 *Having Problems?* Please use the either the [WordPress.org support forums](https://wordpress.org/support/plugin/ebay-feeds-for-wordpress/) and I'll attempt to get back to you quickly. In a rush? Use our [**Priority Support Forums**](http://winwar.co.uk/priority-support/?utm_source=description&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress) to get an answer within 1 business day.
 
@@ -47,6 +49,51 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 3.4 =
+* Fixed a XSS security vulnerability in the Settings area. Update strongly recommended.
+* Tested up to 6.1.1
+
+
+= 3.3.1 =
+* Tested up to 6.0
+
+= 3.3 =
+* Removed Auction Request and replaced with RSS Ground.
+* Fix a bug if you use RSS Ground and don't want the links to open in a new window.
+* Tested up to 5.7
+
+= 3.2.1 =
+* Tested to 5.6
+
+= 3.2 =
+* Allowed you to block search engines from browsing the listings.
+* Added a new filter, `wp_ebay_product_feed_blocked_text`, which will allow you to show bots some text. Use this for things like caching.
+* Tested up to WordPress 5.5.
+
+= 3.1 =
+* Added tracking for auctionrequest links to help with debugging their ends.
+* Added to the new WP Block Directory.
+* Changed the loading of the "ebay_feeds_for_wordpress_change_class_string" to be loaded within the loop, rather than outside it.
+* You can now target each item on the page with the class 'ebay-feed-item-X' (with x being a number).
+* Fixed a typo within the Option Page.
+
+= 3.0.3 =
+* Changed the deny list to an allow list
+
+= 3.0.2 =
+* Caching was a little over exhuberant, changed it to 5 minutes.
+
+= 3.0.1 =
+* Fix a display bug with the legacy list.
+* Removed the option to disable feed cache, as it was slowing down sites.
+* Added a blocker on known bots, to prevent indexation of results in search results.
+
+= 3.0 =
+* Added Auctionrequest Branding to some elements.
+* Added warnings that the feed should be removed.
+* Header is hidden if no auctions are present.
+* Fixed a bug that displayed double fallback text.
+
 = 2.6 =
 * Updated to match the premium version (and having the Italian Translation).
 * Added the ability to control the header.

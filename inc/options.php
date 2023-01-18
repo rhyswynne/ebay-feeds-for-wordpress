@@ -65,7 +65,13 @@ function ebay_feeds_for_wordpress_options() {
 
 								<th scope="row" style="width:400px"><?php _e( 'Default eBay Feed: ', 'ebay-feeds-for-wordpress' ); ?></th>
 
-								<td><input type="text" name="ebay-feeds-for-wordpress-default" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-default' ); ?>" /></td>
+								<td><input type="text" name="ebay-feeds-for-wordpress-default" class="regular-text code" value="<?php echo esc_attr( get_option( 'ebay-feeds-for-wordpress-default' ) ); ?>" />
+								<?php
+								if ( stripos( get_option( 'ebay-feeds-for-wordpress-default' ), 'rest.ebay.com' ) ) {
+									$arurl = "https://www.winwar.co.uk/recommends/rss-ground-plugin/";
+									?><span class="description"><?php printf( __( 'From first September 2020 links feeds with the old rest.ebay.com will no longer work. Please switch to an alternative service like <a href="%s">RSS Ground</a>.', 'ebay-feeds-for-wordpress' ), $arurl ); ?> </span><?php
+								}
+								?></td>
 
 							</tr>
 
@@ -73,7 +79,7 @@ function ebay_feeds_for_wordpress_options() {
 
 								<th scope="row" style="width:400px"><?php _e( 'Default Number of Items To Show:', 'ebay-feeds-for-wordpress' ); ?></th>
 
-								<td><input type="text" name="ebay-feeds-for-wordpress-default-number" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-default-number' ); ?>" /></td>
+								<td><input type="text" name="ebay-feeds-for-wordpress-default-number" class="regular-text code" value="<?php echo esc_attr( get_option( 'ebay-feeds-for-wordpress-default-number' ) ); ?>" /></td>
 
 							</tr>
 
@@ -83,7 +89,7 @@ function ebay_feeds_for_wordpress_options() {
 
 								<td><input type="checkbox" name="ebay-feeds-for-wordpress-link-open-blank" value="1" <?php checked( 1, get_option( 'ebay-feeds-for-wordpress-link-open-blank' ) ); ?>></td>
 
-								</tr>
+							</tr>
 								<tr valign="top">
 
 									<th scope="row" style="width:400px"><label><?php _e( 'Nofollow Links?', 'ebay-feeds-for-wordpress' ); ?></label></th>
@@ -127,7 +133,7 @@ function ebay_feeds_for_wordpress_options() {
 
 									<th scope="row" style="width:400px"><?php _e( 'Default Header: ', 'ebay-feeds-for-wordpress' ); ?></th>
 
-									<td><input type="text" name="ebay-feeds-for-wordpress-default-header" class="regular-text" value="<?php echo get_option( 'ebay-feeds-for-wordpress-default-header' ); ?>" /><br/>
+									<td><input type="text" name="ebay-feeds-for-wordpress-default-header" class="regular-text" value="<?php echo esc_attr( get_option( 'ebay-feeds-for-wordpress-default-header' ) ); ?>" /><br/>
 										<span class="description"><?php _e( 'Default header to use above feeds. Wrapped in <code>&lt;h3&gt;&lt;/h3&gt;</code> tags.', 'ebay-feeds-for-wordpress' ); ?> </span></td>
 
 								</tr>
@@ -136,7 +142,7 @@ function ebay_feeds_for_wordpress_options() {
 
 											<th scope="row" style="width:400px"><?php _e( 'Item Div Wrapper Class: ', 'ebay-feeds-for-wordpress' ); ?></th>
 
-											<td><input type="text" name="ebay-feeds-for-wordpress-item-div-wrapper" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' ); ?>" /><br/>
+											<td><input type="text" name="ebay-feeds-for-wordpress-item-div-wrapper" class="regular-text code" value="<?php echo esc_attr( get_option( 'ebay-feeds-for-wordpress-item-div-wrapper' ) ); ?>" /><br/>
 												<span class="description"><?php _e( 'Add a word here to add a class around each item. Leave blank to disable.', 'ebay-feeds-for-wordpress' ); ?> </span></td>
 
 										</tr>
@@ -145,7 +151,7 @@ function ebay_feeds_for_wordpress_options() {
 
 											<th scope="row" style="width:400px"><?php _e( 'Image Maximum Width: ', 'ebay-feeds-for-wordpress' ); ?></th>
 
-											<td><input type="number" step="1" min="1" name="ebay-feeds-for-wordpress-imax-max-width" class="regular-text code" value="<?php echo get_option( 'ebay-feeds-for-wordpress-imax-max-width' ); ?>" /><br/>
+											<td><input type="number" step="1" min="1" name="ebay-feeds-for-wordpress-imax-max-width" class="regular-text code" value="<?php echo esc_attr( get_option( 'ebay-feeds-for-wordpress-imax-max-width' ) ); ?>" /><br/>
 												<span class="description"><?php _e( 'Set the maximum width of images in pixels.', 'ebay-feeds-for-wordpress' ); ?></span></td>
 
 											</tr>
@@ -177,7 +183,7 @@ function ebay_feeds_for_wordpress_options() {
 
 												</tr>
 
-												<tr valign="top">
+												<?php /* <tr valign="top">
 
 													<th scope="row" style="width:400px"><label><?php _e( 'Disable Feed Caching?', 'ebay-feeds-for-wordpress' ); ?></label></th>
 
@@ -185,7 +191,7 @@ function ebay_feeds_for_wordpress_options() {
 
 														<p><em><?php _e( 'If enabled, this flushes the cache. Use this if you have the odd problem with the feeds displaying incorrectly', 'ebay-feeds-for-wordpress' ); ?></p></td>
 
-														</tr>
+														</tr> */ ?>
 
 														<tr valign="top">
 
@@ -206,6 +212,16 @@ function ebay_feeds_for_wordpress_options() {
 																		<p><em><?php _e( 'Check this box to load images over SSL', 'ebay-feeds-for-wordpress' ); ?></p></td>
 
 																		</tr>
+																<tr valign="top">
+
+																	<th scope="row" style="width:400px"><label><?php _e( 'Hide results from known search engines', 'ebay-feeds-for-wordpress' ); ?></label></th>
+
+																	<td>
+																		<input type="checkbox" name="ebay-feeds-hide-results-from-search-engines" value="1" <?php checked( 1, get_option( 'ebay-feeds-hide-results-from-search-engines' ) ); ?>>
+																		<p><em><?php _e( 'If you want to hide the results from appearing from search engines, tick this box.', 'ebay-feeds-for-wordpress' ); ?></p></td>
+																	</td>
+
+																</tr>
 
 																	<?php do_action( 'ebay_feeds_for_wordpress_added_options' ); ?>
 
@@ -314,6 +330,7 @@ function ebay_feeds_for_wordpress_options_process() { // whitelist options
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-imax-max-width' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-disable-header' );
 	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-for-wordpress-default-header' );
+	register_setting( 'ebay-feeds-for-wordpress-group', 'ebay-feeds-hide-results-from-search-engines' );
 
 	do_action( 'ebay_feeds_for_wordpress_added_options_processing' );
 

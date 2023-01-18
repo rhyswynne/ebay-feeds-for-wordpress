@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Main old function
- *
- * Was previously a carbon copy of the ebay_feeds_for_wordpress_notecho function. Now it simply calls it since 2.0. Easier to maintain.
- *
- * @param  string $url 		The URL of the Feed
- * @param  string $num 		The number of items to display
- * @return mixed 			String of the feed if echo is false, string if true
- */
+* Main old function
+*
+* Was previously a carbon copy of the ebay_feeds_for_wordpress_notecho function. Now it simply calls it since 2.0. Easier to maintain.
+*
+* @param  string $url 		The URL of the Feed
+* @param  string $num 		The number of items to display
+* @return mixed 			String of the feed if echo is false, string if true
+*/
 function ebay_feeds_for_wordpress( $url = "", $num = "", $echo = false, $args = array(), $header = '' ) {
 
 	$display = ebay_feeds_for_wordpress_notecho( $url, $num, $args, $header );
@@ -22,13 +22,41 @@ function ebay_feeds_for_wordpress( $url = "", $num = "", $echo = false, $args = 
 
 
 /**
- * Function to return the eBay Feed.
- *
- * @param  string $dispurls The URL of the Feed
- * @param  string $dispnum  The number of items to display
- * @return string          	String of the feed content
- */
+* Function to return the eBay Feed.
+*
+* @param  string $dispurls The URL of the Feed
+* @param  string $dispnum  The number of items to display
+* @return string          	String of the feed content
+*/
 function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args = array(), $header = '' ) {
+
+	// If the user agent is a bot, return nothing
+	$canview = true;
+	$u_agent = $_SERVER['HTTP_USER_AGENT'];
+	$botsarray = array( "slurp", "crawl", "spider", "curl", "track", "ltx", "msn" );
+	$botsarray = apply_filters( 'wp_ebay_product_feed_bots', $botsarray );
+
+	foreach ( $botsarray as $bot ) {
+		if ( stripos($u_agent, $bot) !== FALSE ) {
+			$canview = false;
+			echo "<!-- Broke on: " . $bot . "-->";
+			break;
+		}
+	}
+
+	if ( $canview ) {
+		if ( ! preg_match('#(MSIE|Trident|(?!Gecko.+)Firefox|(?!AppleWebKit.+Chrome.+)Safari(?!.+Edge)|(?!AppleWebKit.+)Chrome(?!.+Edge)|(?!AppleWebKit.+Chrome.+Safari.+)Edge|AppleWebKit(?!.+Chrome|.+Safari)|Gecko(?!.+Firefox))(?: |\/)([\d\.apre]+)#', $_SERVER['HTTP_USER_AGENT'] ) ) {
+			$canview = false;
+		}
+	}
+
+	// This will allow us to filter this out if needed.
+	$canview = apply_filters( 'wp_ebay_product_feed_bot_blocker', $canview );
+
+	// We can now show text to bots if need be.
+	if ( !$canview ) {
+		return apply_filters( 'wp_ebay_product_feed_blocked_text', '', $dispurls, $dispnum, $args, $header );
+	}
 
 	$link          = get_option( "ebay-feeds-for-wordpress-link" );
 	$blank         = get_option( "ebay-feeds-for-wordpress-link-open-blank" );
@@ -46,24 +74,12 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 	}
 
-	if ( $class ) {
-
-		$classstring = '<div class="' . $class . '">';
-
-	} else {
-		$classstring = '<div class="">';
-	}
-
-
-	$classstring = apply_filters( 'ebay_feeds_for_wordpress_change_class_string', $classstring, $args );
-
-	if ( ! $disableheader && $header ) {
-		$display .=  "<h3>" . $header . "</h3>";
-	}
-
 	if ( $dispurls == "" || $dispurls == "null" ) {
 
 		$dispurldefault = esc_attr( get_option( 'ebay-feeds-for-wordpress-default' ) );
+		$dispurldefault = apply_filters( 'wp_ebay_product_feed_url', $dispurldefault );
+		
+		$dispurldefault = str_replace( '&amp;', '&', $dispurldefault );
 		$disprss        = fetch_feed( $dispurldefault );
 
 		if ( $disprss ) {
@@ -72,6 +88,7 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 				$disprss->enable_order_by_date(false);
 				$maxitems      = $disprss->get_item_quantity( $dispnum );
 				$disprss_items = $disprss->get_items( 0, $maxitems );
+				$dispurls      = $dispurldefault;
 			}
 
 		} else {
@@ -84,8 +101,11 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 		}
 
 	} else {
+
+		$dispurls = apply_filters( 'wp_ebay_product_feed_url', $dispurls );
 		$dispurls = str_replace( '&amp;', '&', $dispurls );
-		$disprss = fetch_feed( $dispurls );
+
+		$disprss  = fetch_feed( $dispurls );
 		//wp_die( print_r( $disprss ) );
 
 		if ( !is_wp_error( $disprss ) ) {
@@ -107,12 +127,19 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 			$display .=  "<div class='ebayfeed'>";
 			$display .= $fallback;
 			$display .=  "</div>";
+			return $display;
 
 		}
 
 	}
 
-	$display .=  "<div class='ebayfeed'>";
+	if ( false !== strpos( $dispurls, 'rssground' ) ) {
+		$extrawrapperclass = "rssground";
+	} else {
+		$extrawrapperclass = '';
+	}
+
+	$display .=  "<div class='ebayfeed " . $extrawrapperclass . "'>";
 
 	//print_r( $disprss_items );
 
@@ -121,6 +148,12 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 		$temptitle = false;
 		$tempperm  = false;
 		$temdesc   = false;
+
+		if ( ! $disableheader && $header ) {
+			$display .=  "<h3>" . $header . "</h3>";
+		}
+
+		$itemno = 0;
 
 		foreach ( $disprss_items as $dispitem ) {
 
@@ -146,14 +179,29 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 				$title .= " rel='nofollow' ";
 			}
 
-			$title .= "href='" . $dispitem->get_permalink()."'>" . $dispitem->get_title() . "</a></h4>";
+			$itemno++;
 
-			$title = apply_filters( 'ebay_feeds_for_wordpress_title_string', $title, $args );
+			if ( $class ) {
+
+				$classstring = '<div class="' . $class . ' ebay-feed-item-' . $itemno .'">';
+
+			} else {
+				$classstring = '<div class="ebay-feed-item-' . $itemno .'">';
+			}
+
+
+			$classstring   = apply_filters( 'ebay_feeds_for_wordpress_change_class_string', $classstring, $args );
+
+			$feeditemtitle = apply_filters( 'ebay_feeds_for_wordpress_change_feed_item_name', $dispitem->get_title(), $args );
+
+			$title        .= "href='" . $dispitem->get_permalink()."'>" . $feeditemtitle . "</a></h4>";
+			$title         = apply_filters( 'ebay_feeds_for_wordpress_title_string', $title, $args );
 
 			$display .= $classstring . $title;
 
 			if ( $blank != "1" ) {
 				$newdescription = str_replace( "target='_blank'", "", $dispitem->get_description() );
+				$newdescription = str_replace( 'target="_blank"', '', $dispitem->get_description() );
 			} else {
 				$newdescription = $dispitem->get_description();
 			}
@@ -198,10 +246,10 @@ function ebay_feeds_for_wordpress_notecho( $dispurls = "", $dispnum = "", $args 
 
 
 /**
- * Parse the WP eBay Product Feeds Shortcode
- * @param  array  $atts  	array of attributes
- * @return string 			The display feed
- */
+* Parse the WP eBay Product Feeds Shortcode
+* @param  array  $atts  	array of attributes
+* @return string 			The display feed
+*/
 function ebayfeedsforwordpress_shortcode( $atts ) {
 
 	$feed   = '';
@@ -210,7 +258,7 @@ function ebayfeedsforwordpress_shortcode( $atts ) {
 
 	extract( shortcode_atts( array(
 		'feed' => $feed, 'items' => $items, 'header' => $header
-		), $atts ) );
+	), $atts ) );
 
 	if ( ! $feed ) {
 		$feed  = get_option( 'ebay-feeds-for-wordpress-default' );
@@ -232,9 +280,9 @@ function ebayfeedsforwordpress_shortcode( $atts ) {
 
 
 /**
- * Add CSS to the header to display max width
- * @return void
- */
+* Add CSS to the header to display max width
+* @return void
+*/
 function ebayfeedsforwordpress_set_max_image_width() {
 	if ( get_option( 'ebay-feeds-for-wordpress-imax-max-width' ) ) {
 		?>
@@ -245,4 +293,18 @@ function ebayfeedsforwordpress_set_max_image_width() {
 		</style>
 		<?php
 	}
+}
+
+
+/**
+ * Add Google & Bing to the search arrays
+ *
+ * @param  array $botarray A list of bots we are blocking from the site
+ * @return array           A list of bots we are blocking from the site + Google & Bing
+ */
+function ebay_feeds_for_wordpress_hide_from_search( $botsarray ) {
+	$botsarray[] = 'google';
+	$botsarray[] = 'bing';
+
+	return $botsarray;
 }

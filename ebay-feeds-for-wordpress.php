@@ -3,13 +3,13 @@
 Plugin Name:  WP eBay Product Feeds
 Plugin URI:   https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Former eBay Feeds for WordPress. Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.
-Version:      2.6
+Version:      3.3.1
 Author:       Winwar Media
 Author URI:   https://www.winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Text Domain:  ebay-feeds-for-wordpress
 */
 
-define( "EBFW_PLUGIN_VERSION", "2.6" );
+define( "EBFW_PLUGIN_VERSION", "3.3.1" );
 
 define( 'EBAYFEEDSFORWORDPRESS_PLUGIN_PATH', dirname( __FILE__ ) );
 define( 'EBAYFEEDSFORWORDPRESS_PLUGIN_URL', plugins_url( '', __FILE__ ) );
@@ -36,6 +36,7 @@ function ebay_feeds_for_wordpress_initialise_plugin() {
 	add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_check_for_gutenberg', 50 );
 	add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_add_shortcode', 10 );
 	add_action( 'wp_head', 'ebayfeedsforwordpress_set_max_image_width' );
+	add_filter( 'wp_ebay_product_feed_url', 'wp_ebay_product_feed_debug_ar_urls', 10, 1 );
 
 	// Admin Functions
 	if ( is_admin() ) { // admin actions
@@ -44,6 +45,12 @@ function ebay_feeds_for_wordpress_initialise_plugin() {
 		add_action( 'admin_init', 'ebay_feeds_for_wordpress_options_process' );
 		add_action( 'admin_init', 'ebay_feeds_for_wordpress_add_admin_stylesheet' );
 
+	}
+
+	$disabletosearcheinges = get_option( 'ebay-feeds-hide-results-from-search-engines' );
+
+	if ( $disabletosearcheinges ) {
+		add_filter( 'wp_ebay_product_feed_bots', 'ebay_feeds_for_wordpress_hide_from_search', 10, 1 );
 	}
 } add_action( 'plugins_loaded', 'ebay_feeds_for_wordpress_initialise_plugin', 1 );
 
@@ -58,13 +65,14 @@ function ebay_feeds_for_wordpress_add_shortcode() {
 	add_shortcode( 'ebayfeedsforwordpress', 'ebayfeedsforwordpress_shortcode' );
 }
 
-
+add_filter( 'wp_feed_cache_transient_lifetime', 'ebay_feeds_for_wordpress_set_feed_cache_time', 99, 1 );
+add_filter( 'wp_feed_cache_transient_lifetime', 'ebay_feeds_for_wordpress_set_feed_cache_time', 100, 1 );
 
 // Debug Functions
-if ( 1 == get_option( 'ebay-feed-for-wordpress-flush-cache' ) ) {
+/* if ( 1 == get_option( 'ebay-feed-for-wordpress-flush-cache' ) ) {
 	add_filter( 'wp_feed_cache_transient_lifetime', 'ebay_feeds_for_wordpress_set_feed_cache_time', 99, 1 );
 	add_filter( 'wp_feed_cache_transient_lifetime', 'ebay_feeds_for_wordpress_set_feed_cache_time', 100, 1 );
-}
+} */
 
 // Gutenberg Support
 function ebay_feeds_for_wordpress_check_for_gutenberg() {
@@ -86,7 +94,7 @@ register_activation_hook( __FILE__, 'ebay_feeds_for_wordpress_install' );
  * @return void
  */
 function ebay_feeds_for_wordpress_install() {
-	add_option( 'ebay-feeds-for-wordpress-default', 'http://rest.ebay.com/epn/v1/find/item.rss?keyword=Ferrari&categoryId1=18180&sortOrder=BestMatch&programid=15&campaignid=5336886189&toolid=10039&listingType1=All&lgeo=1&descriptionSearch=true&feedType=rss' );
+	add_option( 'ebay-feeds-for-wordpress-default', 'https://www.auctionrequest.com/arfeed.php?uid=rhy5ee4d2c7e425&keyword=%22Ferrari%22&sortOrder=BestMatch&programid=15&campaignid=5336886189&listingType1=All&descriptionSearch=true&categoryId1=18180' );
 	add_option( 'ebay-feeds-for-wordpress-default-number', 3 );
 	add_option( 'ebay-feeds-for-wordpress-link', 0 );
 	add_option( 'ebay-feeds-for-wordpress-link-open-blank', 0 );
