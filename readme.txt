@@ -8,7 +8,7 @@ Tested Up to: 6.1.1
 Author:       Rhys Wynne
 Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Contributors: rhyswynne
-Stable tag: 3.3.1
+Stable tag: 3.4
 Requires at least: 3.0
 Text Domain: ebay-feeds-for-wordpress
 Tags: ebay, ebay partner feeds, block, ebay partner network, gutenberg ready, affiliate marketing
