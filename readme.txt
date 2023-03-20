@@ -3,12 +3,12 @@ Plugin Name:  WP eBay Product Feeds
 Plugin URI:   https://winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Donate link:  https://winwar.co.uk/plugins/ebay-feeds-wordpress/#donate
 Description:  Formerly eBay Feeds for WordPress. Output RSS to HTML with this simple plugin. Easy to install, set up and customise.
-Version:      3.4
-Tested Up to: 6.1.1
+Version:      3.4.1
+Tested Up to: 6.2
 Author:       Rhys Wynne
 Author URI:   https://www.winwar.co.uk/?utm_source=header&utm_medium=wordpressorgreadme&utm_campaign=ebayfeedsforwordpress
 Contributors: rhyswynne
-Stable tag: 3.4
+Stable tag: 3.4.1
 Requires at least: 3.0
 Text Domain: ebay-feeds-for-wordpress
 Tags: ebay, ebay partner feeds, block, ebay partner network, gutenberg ready, affiliate marketing
@@ -49,6 +49,9 @@ We offer support in two places:-
 * Fix (or submit) an issue on Github.
 
 == Changelog ==
+= 3.4 =
+* Tested up to 6.2
+
 = 3.4 =
 * Fixed a XSS security vulnerability in the Settings area. Update strongly recommended.
 * Tested up to 6.1.1

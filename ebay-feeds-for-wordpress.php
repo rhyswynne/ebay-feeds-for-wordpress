@@ -3,13 +3,13 @@
 Plugin Name:  WP eBay Product Feeds
 Plugin URI:   https://www.winwar.co.uk/plugins/ebay-feeds-wordpress/?utm_source=plugin-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Description:  Former eBay Feeds for WordPress. Parser of ebay RSS feeds to display on WordPress posts, widgets and pages.
-Version:      3.4
+Version:      3.4.1
 Author:       Winwar Media
 Author URI:   https://www.winwar.co.uk/?utm_source=author-link&utm_medium=plugin&utm_campaign=ebayfeedsforwordpress
 Text Domain:  ebay-feeds-for-wordpress
 */
 
-define( "EBFW_PLUGIN_VERSION", "3.4" );
+define( "EBFW_PLUGIN_VERSION", "3.4.1" );
 
 define( 'EBAYFEEDSFORWORDPRESS_PLUGIN_PATH', dirname( __FILE__ ) );
 define( 'EBAYFEEDSFORWORDPRESS_PLUGIN_URL', plugins_url( '', __FILE__ ) );
